@@ -1,0 +1,51 @@
+$icon-size-base: 16px !default;
+$icon-size-sm: 16px !default;
+$icon-size-md: 32px !default;
+$icon-size-lg: 64px !default;
+$icon-size-xl: 128px !default;
+$icon-size-xx: 256px !default;
+
+.icon {
+  display: block;
+  vertical-align: middle;
+  background-color: transparent;
+  width: $icon-size-base;
+  height: $icon-size-base;
+  color: inherit;
+  fill: currentColor;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: inherit;
+
+    symbol path {
+      all: inherit;
+    }
+  }
+
+  &.icon-sm {
+    width: $icon-size-sm;
+    height: $icon-size-sm;
+  }
+
+  &.icon-md {
+    width: $icon-size-md;
+    height: $icon-size-md;
+  }
+
+  &.icon-lg {
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+  }
+
+  &.icon-xl {
+    width: $icon-size-xl;
+    height: $icon-size-xl;
+  }
+
+  &.icon-xx {
+    width: $icon-size-xx;
+    height: $icon-size-xx;
+  }
+}

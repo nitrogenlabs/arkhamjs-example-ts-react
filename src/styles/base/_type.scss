@@ -1,0 +1,134 @@
+$font-size-root: 16px !default;
+$font-size-base: 1rem !default;
+$font-family-base: '"Helvetica Neue", Helvetica, Arial, sans-serif' !default;
+$line-height: 1.5 !default;
+$link-color: #cccccc !default;
+$link-decoration: none !default;
+$link-hover-color: #000000 !default;
+$link-hover-decoration: none !default;
+
+$body-color: #222222 !default;
+$body-bg: #ffffff !default;
+
+$headings-margin-bottom: 15px !default;
+$headings-font-family: '"Helvetica Neue", Helvetica, Arial, sans-serif' !default;
+$headings-font-weight: 700 !default;
+$headings-line-height: 1 !default;
+$headings-color: #cccccc !default;
+
+$font-size-h1: 4rem !default;
+$font-size-h2: 3rem !default;
+$font-size-h3: 2rem !default;
+$font-size-h4: 1rem !default;
+$font-size-h5: 0.75rem !default;
+$font-size-h6: 0.50rem !default;
+
+$abbr-border-color: #999999 !default;
+
+html {
+  // Sets a specific default `font-size` for user with `rem` type scales.
+  font-size: $font-size-root;
+}
+
+// Body
+body {
+  // Go easy on the eyes and use something other than `#000` for text
+  color: $body-color;
+  // Make the `body` use the `font-size-root`
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1;
+  // By default, `<body>` has no `background-color` so we set one as a best practice.
+  background-color: $body-bg;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+  // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
+  // margin for easier control within type scales as it avoids margin collapsing.
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+}
+
+h1 { font-size: $font-size-h1; }
+h2 { font-size: $font-size-h2; }
+h3 { font-size: $font-size-h3; }
+h4 { font-size: $font-size-h4; }
+h5 { font-size: $font-size-h5; }
+h6 { font-size: $font-size-h6; }
+
+
+// Reset margins on paragraphs
+//
+// Similarly, the top margin on `<p>`s get reset. However, we also reset the
+// bottom margin to use `rem` units instead of `em`.
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: $line-height;
+}
+
+// Links
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  cursor: pointer;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+// Abbreviations and acronyms
+abbr[title],
+  // Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted $abbr-border-color;
+}
+
+address {
+  margin-bottom: 1rem;
+  font-style: normal;
+  line-height: inherit;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: .5rem;
+  margin-left: 0; // Undo browser default
+}
+
+blockquote {
+  margin: 0 0 1rem;
+}
+
+// Code
+pre {
+  // Remove browser default top margin
+  margin-top: 0;
+  // Reset browser default of `1em` to use `rem`s
+  margin-bottom: 1rem;
+}
