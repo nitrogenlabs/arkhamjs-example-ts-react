@@ -36,3 +36,5 @@ jspm_packages
 
 # Compiled
 dist
+/src/icons/.DS_Store
+/src/img/.DS_Store
