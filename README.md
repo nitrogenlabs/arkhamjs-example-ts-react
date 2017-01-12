@@ -70,18 +70,17 @@ Webpack
 The webpack compiler configuration is located in `~/build/webpack`. When the webpack dev server runs, only the client compiler will be used. When webpack itself is run to compile to disk, both the client and server configurations will be used. Settings that are bundle agnostic should be defined in `~/build/config.js` and imported where needed.
 
 ### Vendor Bundle
-You can redefine which packages to treat as vendor dependencies by editing `vendor_dependencies` in `~/config/index.js`. These default to:
+You can redefine which packages to treat as vendor dependencies by editing the vendor property in the webpack config in `~/build/config.js`. These default to:
 
 ```js
 [
-  'history',
+  'arkhamjs',
+  'babel-polyfill',
+  'bluebird',
   'react',
-  'react-redux',
+  'react-dom',
   'react-router',
-  'redux-router',
-  'redux',
-  'redux-devtools',
-  'redux-devtools/lib/react'
+  'whatwg-fetch'
 ]
 ```
 
@@ -95,13 +94,13 @@ import MyComponent from 'components/my-component'; // with alias
   // Available aliases:
   actions     => '~/src/actions'
   components  => '~/src/components'
+  config      => '~/src/config/[env]'
   constants   => '~/src/constants'
-  containers  => '~/src/containers'
-  layouts     => '~/src/layouts'
-  reducers    => '~/src/reducers'
-  routes      => '~/src/routes'
+  errors      => '~/src/errors'
   services    => '~/src/services'
+  stores      => '~/src/stores'
   styles      => '~/src/styles'
+  test        => '~/test'
   utils       => '~/src/utils'
   views       => '~/src/views'
 ```
@@ -138,65 +137,10 @@ Furthermore, this `styles` directory is aliased for sass imports, which further 
 @import 'base';
 ```
 
-Database
--------
-- Install the latest MacOS [binary](https://www.arangodb.com/download/macosx/) into the Applications directory.
-- Create the database `reaktor`.
-- Run the gulp import task to import the latest data into your local database.
-
-```
-gulp db:get:s3
-```
-
 Testing
 -------
 
 To add a unit test, simply create `.spec.js` file anywhere in `~/test`. All imports will be relative to the "~/src" directory. The entry point for Karma uses webpack's custom require to load all these files, and Jasmine will be available to you within your test without the need to import them.
-
-Utilities
----------
-
-This boilerplate comes with two simple utilities (thanks to [StevenLangbroek](https://github.com/StevenLangbroek)) to help speed up your Redux development process. In `~/client/utils` you'll find exports for `createConstants` and `createReducer`. The former is pretty much an even lazier `keyMirror`, so if you _really_ hate typing out those constants you may want to give it a shot. Check it out:
-
-```js
-import { createConstants } from 'utils';
-
-export default createConstants(
-  'TODO_CREATE',
-  'TODO_DESTROY',
-  'TODO_TOGGLE_COMPLETE'
-);
-```
-
-The other utility, `create-reducer`, is designed to expedite creating reducers when they're defined via an object map rather than switch statements. As an example, what once looked like this:
-
-```js
-import { TODO_CREATE } from 'constants/todo';
-
-const initialState = [];
-const handlers = {
-  [TODO_CREATE] : (state, payload) => { ... }
-};
-
-export default function todo (state = initialState, action) {
-  const handler = handlers[action.type];
-
-  return handler ? handler(state, action.payload) : state;
-}
-```
-
-Can now look like this:
-
-```js
-import { TODO_CREATE } from 'constants/todo';
-import { createReducer } from 'utils';
-
-const initialState = [];
-
-export default createReducer(initialState, {
-  [TODO_CREATE] : (state, payload) => { ... }
-});
-```
 
 Troubleshooting
 ---------------
