@@ -40,21 +40,32 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 
 ```
 .
-├── bin                      # Build/Start scripts
 ├── build                    # All build-related configuration
-│   ├── webpack              # Environment-specific configuration files for Webpack
-|   ├── config.js            # Project configuration settings
-|   ├── karma.js            # Karma configuration settings
-└── src                      # Application source code
-    ├── components           # React Components
-    ├── containers           # Components that provide context (e.g. Redux Providers)
-    ├── layouts              # Components that dictate major page structure
-    ├── reducers             # Redux reducers
-    ├── routes               # Application route definitions
-    ├── stores               # Redux store configuration
-    ├── utils                # Utilities
-    ├── views                # Components that live at a route
-    └── index.js             # Application bootstrap and rendering
+│   ├── tasts                # Gulp configurations
+│   ├── config.js            # Project configuration settings
+│   └── dev-server.js        # Development server configuration
+│   └── prod-server.js       # Production server configuration
+├── dist                     # Compiled files
+│   ├── dev                  # Development files
+│   └── prod                 # Production files
+├── js                       # External js files
+├── src                      # Application source code
+│   ├── actions              # Flux actions
+│   ├── components           # React components
+│   ├── config               # Configuration files
+│       ├── development      # Development configuration
+│       └── production       # Production configuration
+│   ├── constants            # Collection of constants used in routes and events
+│   ├── errors               # Custom errors
+│   ├── fonts                # Font files
+│   ├── icons                # SVG files
+│   ├── img                  # Images
+│   ├── services             # Helpers and utilities
+│   ├── stores               # Redux store configuration
+│   ├── styles               # SCSS styles
+│   ├── views                # React components/views that live at a route
+│   └── index.js             # Application bootstrap and rendering
+└── test                     # Test specs
 ```
 
 ### Components vs. Views vs. Layouts
@@ -101,7 +112,6 @@ import MyComponent from 'components/my-component'; // with alias
   stores      => '~/src/stores'
   styles      => '~/src/styles'
   test        => '~/test'
-  utils       => '~/src/utils'
   views       => '~/src/views'
 ```
 

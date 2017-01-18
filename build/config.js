@@ -180,13 +180,13 @@ const webpackConfig = Immutable.fromJS({
       components: config.absolute(config.directories.src, 'components'),
       config: config.absolute(config.directories.src, 'config', config.env),
       constants: config.absolute(config.directories.src, 'constants'),
+      dev: config.absolute('node_dev'),
+      errors: config.absolute(config.directories.src, 'errors'),
       services: config.absolute(config.directories.src, 'services'),
       stores: config.absolute(config.directories.src, 'stores'),
-      views: config.absolute(config.directories.src, 'views'),
-      errors: config.absolute(config.directories.src, 'errors'),
       styles: config.absolute(config.directories.src, 'styles'),
       test: config.absolute(config.directories.test),
-      dev: config.absolute('node_dev'),
+      views: config.absolute(config.directories.src, 'views'),
       'react/lib/Object.assign': 'object-assign'
     }
   },
