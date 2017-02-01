@@ -3,11 +3,9 @@ import config from 'config';
 import {AppActions} from 'actions';
 
 export default class View extends Component {
-  static get propTypes() {
-    return {
-      children: PropTypes.object
-    };
-  }
+  static propTypes = {
+    children: PropTypes.object
+  };
 
   constructor(props, name, isSecured = false) {
     super(props);
@@ -62,6 +60,8 @@ export default class View extends Component {
     } else {
       document.title = `${name} :: ${config.appName}`;
     }
+
+    return document.title;
   }
 
   onLoading(toggle) {
@@ -70,6 +70,10 @@ export default class View extends Component {
 
   goto(path = '/') {
     AppActions.goto(path);
+  }
+
+  render() {
+    return null;
   }
 }
 

@@ -1,26 +1,27 @@
 import React, {PropTypes} from 'react';
 
 export default class Component extends React.Component {
-  static propTypes() {
-    return {
-      className: PropTypes.string
-    };
-  }
+  static propTypes = {
+    className: PropTypes.string
+  };
 
-  static get defaultProps() {
-    return {
-      className: ''
-    };
-  }
+  static defaultProps = {
+    className: ''
+  };
 
   constructor(props, name) {
     super(props);
 
     // Component Name
-    this.name = name || 'component';
+    if(typeof name === 'string') {
+      this.name = name;
+    } else {
+      this.name = 'component';
+    }
 
     // Methods
     this.addStyles = this.addStyles.bind(this);
+    this.getStyles = this.getStyles.bind(this);
   }
 
   getStyles() {
@@ -29,10 +30,14 @@ export default class Component extends React.Component {
     cls.push(this.name);
 
     // Add additional classes
-    return cls.concat(this.addStyles()).join(' ').trim();
+    return cls.concat(this.addStyles()).filter(o => o !== '').join(' ').trim();
   }
 
   addStyles() {
     return [];
+  }
+
+  render() {
+    return null;
   }
 }

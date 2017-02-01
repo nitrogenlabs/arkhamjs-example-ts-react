@@ -1,18 +1,24 @@
-import gulp from 'gulp';
 import config from '../config';
-import plumber from 'gulp-plumber';
-import util from 'gulp-util';
-import mocha from 'gulp-mocha';
+import del from 'del';
 import eslint from 'gulp-eslint';
+import gulp from 'gulp';
+import karma from 'karma';
+import plumber from 'gulp-plumber';
+import runSequence from 'run-sequence';
+import util from 'gulp-util';
+import vinylPaths from 'vinyl-paths';
 
 // Tests
 // Run all javascript tests
-gulp.task('test', ['js:mocha']);
+gulp.task('test', done => {
+  runSequence(
+    'test:clean',
+    'js:karma',
+    done
+  );
+});
 
-// Verification
-// Run all test/verification tasks
-gulp.task('verify', ['js:mocha', 'js:hint']);
-
+// ESLint
 gulp.task('js:eslint', () => {
   return gulp.src(config.path.src.js)
     .pipe(plumber({errorHandler: util.log}))
@@ -20,7 +26,16 @@ gulp.task('js:eslint', () => {
     .pipe(eslint.format());
 });
 
-gulp.task('js:mocha', () => {
-  return gulp.src(config.path.test.entry, {read: false})
-    .pipe(mocha({reporter: 'nyan'}));
+// Karma unit tests
+gulp.task('js:karma', done => {
+  new karma.Server(config.karma, status => {
+    done();
+    process.exit(status);
+  }).start();
+});
+
+// Deletes all test files
+gulp.task('test:clean', () => {
+  return gulp.src(`${config.relative('coverage')}/*`, {dot: true, read: false})
+    .pipe(vinylPaths(del));
 });

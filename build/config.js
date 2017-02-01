@@ -95,8 +95,7 @@ config.path = {
   doc: './doc',
   test: {
     e2e: config.relative(config.directories.test, 'e2e/**/*.js'),
-    unit: config.relative(config.directories.test, 'unit/**/*.spec.js'),
-    entry: config.relative(config.directories.test, 'unit/index.js')
+    unit: config.relative(config.directories.test, 'unit/index.js')
   }
 };
 
@@ -162,17 +161,16 @@ const webpackConfig = Immutable.fromJS({
   },
   output: {
     filename: '[name].js',
-    publicPath: '/js'
+    publicPath: '/js',
+    path: config.absolute(config.directories[config.env], 'js')
   },
   resolve: {
     extensions: [
-      '',
       '.js',
       '.json'
     ],
-    modulesDirectories: [
+    modules: [
       config.directories.src,
-      'node_dev',
       'node_modules'
     ],
     alias: {
@@ -180,7 +178,6 @@ const webpackConfig = Immutable.fromJS({
       components: config.absolute(config.directories.src, 'components'),
       config: config.absolute(config.directories.src, 'config', config.env),
       constants: config.absolute(config.directories.src, 'constants'),
-      dev: config.absolute('node_dev'),
       errors: config.absolute(config.directories.src, 'errors'),
       services: config.absolute(config.directories.src, 'services'),
       stores: config.absolute(config.directories.src, 'stores'),
@@ -191,162 +188,89 @@ const webpackConfig = Immutable.fromJS({
     }
   },
   module: {
-    preLoaders: [
+    rules: [
       {
-        loader: 'json-loader',
-        test: /\.json$/
+        use: [{loader: 'eslint-loader', options: {configFile: '.eslintrc', emitWarning: true, failOnError: true}}],
+        test: /\.js$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
       },
       {
-        loader: 'eslint-loader',
+        use: [{loader: 'babel-loader', options: {presets: ['es2015', 'react', 'stage-0']}}],
         test: /\.js$/,
         exclude: /node_modules/
       }
-    ],
-    loaders: [
-      {
-        loader: 'babel-loader',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react', 'stage-0']
-        }
-      }
     ]
   },
-  eslint: {
-    configFile: '.eslintrc'
-  }
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(config.env),
+      'APP_VERSION': JSON.stringify(config.version),
+      'window.APP_VERSION': JSON.stringify(config.version)
+    }),
+    new HtmlWebpackPlugin({
+      title: config.title,
+      template: config.absolute(config.directories.src, config.filenames.index),
+      hash: false,
+      filename: config.absolute(config.directories[config.env], config.filenames.index),
+      inject: false,
+      external: config.external
+    }),
+    new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
+  ]
 });
 
 config.webpack = {};
 
 // Webpack - Development
 config.webpack.development = webpackConfig
-  .mergeDeep({
-    debug: true,
-    devtool: false,
-    eslint: {emitWarning: true},
-    output: {path: config.absolute(config.directories.development, 'js')},
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('development'),
-        'APP_VERSION': JSON.stringify(config.version),
-        'window.APP_VERSION': JSON.stringify(config.version)
-      }),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
-      new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
-      new HtmlWebpackPlugin({
-        title: config.title,
-        template: config.absolute(config.directories.src, config.filenames.index),
-        hash: false,
-        filename: config.absolute(config.directories[config.env], config.filenames.index),
-        inject: false,
-        external: config.external
-      }),
-      new webpack.optimize.CommonsChunkPlugin('vendor', '[name].js')
-    ]
-  })
+  .mergeDeep({devtool: false})
   .toJS();
+config.webpack.development.plugins.push(
+  new webpack.LoaderOptionsPlugin({debug: true}),
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'})
+);
 config.webpack.development.entry.app.push('webpack-hot-middleware/client');
 
 // Webpack - Test
 config.webpack.test = webpackConfig
   .delete('entry')
   .delete('output')
-  .delete('plugins')
-  .mergeDeep({
-    debug: true,
-    devtool: 'cheap-module-source-map',
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('preprod'),
-        'APP_VERSION': JSON.stringify(config.version),
-        'window.APP_VERSION': JSON.stringify(config.version)
-      }),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
-      new HtmlWebpackPlugin({
-        title: config.title,
-        template: config.absolute(config.directories.src, config.filenames.index),
-        hash: false,
-        filename: config.absolute(config.directories[config.env], config.filenames.index),
-        inject: false,
-        external: config.external
-      }),
-    ],
-    eslint: {configFile: '.eslintrc'}
-  })
+  .mergeDeep({devtool: 'cheap-module-source-map'})
   .toJS();
+config.webpack.test.plugins.push(new webpack.LoaderOptionsPlugin({debug: true}));
+config.webpack.test.module.rules.push({
+  use: [{loader: 'isparta-loader'}],
+  test: /\.js$/,
+  include: path.resolve(`${config.directories.src}/`),
+  enforce: 'post'
+});
 
 // Webpack - Pre-production
-config.webpack.preprod = webpackConfig
-  .mergeDeep({
-    eslint: {failOnError: true},
-    output: {path: config.absolute(config.directories.preprod, 'js')},
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('preprod'),
-        'APP_VERSION': JSON.stringify(config.version),
-        'window.APP_VERSION': JSON.stringify(config.version)
-      }),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
-      new HtmlWebpackPlugin({
-        title: config.title,
-        template: config.absolute(config.directories.src, config.filenames.index),
-        hash: false,
-        filename: config.absolute(config.directories[config.env], config.filenames.index),
-        inject: false,
-        external: config.external
-      }),
-      new webpack.optimize.CommonsChunkPlugin('vendor', '[name].js')
-    ]
-  })
-  .toJS();
+config.webpack.preprod = webpackConfig.toJS();
+config.webpack.preprod.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'})
+);
 
 // Webpack - Production
-config.webpack.production = webpackConfig
-  .mergeDeep({
-    eslint: {failOnError: true},
-    output: {path: config.absolute(config.directories.production, 'js')},
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'APP_VERSION': JSON.stringify(config.version),
-        'window.APP_VERSION': JSON.stringify(config.version)
-      }),
-      new webpack.optimize.OccurrenceOrderPlugin(),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
-      new webpack.optimize.CommonsChunkPlugin('vendor', '[name].js'),
-      new HtmlWebpackPlugin({
-        title: config.title,
-        template: config.absolute(config.directories.src, config.filenames.index),
-        hash: false,
-        filename: config.absolute(config.directories[config.env], config.filenames.index),
-        inject: false,
-        external: config.external
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        output: {
-          comments: false
-        },
-        minimize: {
-          warnings: false
-        },
-        sourceMap: false,
-        compress: {
-          unused: true,
-          dead_code: true,
-          warnings: false
-        }
-      })
-    ]
+config.webpack.production = webpackConfig.toJS();
+config.webpack.production.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'}),
+  new webpack.optimize.UglifyJsPlugin({
+    output: {
+      comments: false
+    },
+    compress: {
+      unused: true,
+      dead_code: true
+    }
   })
-  .toJS();
+);
+
+// Karma
+config.karma = {
+  configFile: config.absolute('karma.conf.js')
+};
 
 export default config;

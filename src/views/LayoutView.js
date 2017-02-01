@@ -1,11 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 
 export default class LayoutView extends Component {
-  static get propTypes() {
-    return {
-      children: PropTypes.object
-    };
-  }
+  static propTypes = {
+    children: PropTypes.object
+  };
 
   render() {
     return (

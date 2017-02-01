@@ -17,11 +17,9 @@ const {
 } = views;
 
 export default class AppView extends Component {
-  static get propTypes() {
-    return {
-      location: PropTypes.object
-    };
-  }
+  static propTypes = {
+    location: PropTypes.object
+  };
 
   constructor(props) {
     super(props);
