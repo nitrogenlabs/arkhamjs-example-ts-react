@@ -1,7 +1,7 @@
 ArkhamJS Skeleton App
 =====================
 
-A simple skeleton to start you off on your ReactJS project. Uses ArkhamJS framework for a flux architecture.
+A simple skeleton to start you off on your ReactJS project. Uses [ArkhamJS](https://github.com/nitrogenlabs/arkhamjs) framework for a flux architecture.
 
 Getting Started
 ---------------
@@ -45,6 +45,7 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 │   ├── config.js            # Project configuration settings
 │   └── dev-server.js        # Development server configuration
 │   └── prod-server.js       # Production server configuration
+├── coverage                 # Unit test coverage reports
 ├── dist                     # Compiled files
 │   ├── dev                  # Development files
 │   └── prod                 # Production files
@@ -150,9 +151,9 @@ Furthermore, this `styles` directory is aliased for sass imports, which further 
 Testing
 -------
 
-To add a unit test, simply create `.spec.js` file anywhere in `~/test`. All imports will be relative to the "~/src" directory. The entry point for Karma uses webpack's custom require to load all these files, and Jasmine will be available to you within your test without the need to import them.
+To add a unit test, simply create `.spec.js` file in `~/test/unit`. All imports will be relative to the "~/src" directory. The entry point for Karma uses webpack's custom require to load all these files, and Jasmine will be available to you within your test without the need to import them.
 
 Troubleshooting
 ---------------
 
-Nothing yet. Having an issue? Report it and I'll get to it as soon as possible!
+Nothing yet. Having an issue? Report it and We'll get to it as soon as possible!
