@@ -3,9 +3,7 @@ ArkhamJS Skeleton App
 
 A simple skeleton to start you off on your ReactJS project. Uses [ArkhamJS](https://github.com/nitrogenlabs/arkhamjs) framework for a flux architecture.
 
-[![npm version](https://img.shields.io/npm/v/arkhamjs-skeleton.svg?style=flat-square)](https://www.npmjs.com/package/arkhamjs-skeleton)
 [![Travis](https://img.shields.io/travis/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://travis-ci.org/nitrogenlabs/arkhamjs-skeleton)
-[![npm downloads](https://img.shields.io/npm/dm/arkhamjs-skeleton.svg?style=flat-square)](https://www.npmjs.com/package/arkhamjs-skeleton)
 [![Issues](http://img.shields.io/github/issues/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://github.com/nitrogenlabs/arkhamjs-skeleton/issues)
 [![Gitter](https://img.shields.io/gitter/room/NitrgenLabs/arkhamjs.svg?style=flat-square)](https://gitter.im/NitrogenLabs/arkhamjs)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://opensource.org/licenses/MIT)
