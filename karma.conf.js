@@ -48,6 +48,8 @@ module.exports = function(cfg) {
       useIframe: false
     },
 
+    logLevel: cfg.LOG_ERROR,
+
     browsers: ['PhantomJSCustom'],
     customLaunchers: {
       PhantomJSCustom: {

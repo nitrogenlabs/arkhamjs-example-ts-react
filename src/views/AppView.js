@@ -6,11 +6,6 @@ import {AppActions} from 'actions';
 import * as views from 'views';
 import {AppStore} from 'stores';
 
-// Enable debugger in dev mode
-if(config.env === 'development') {
-  Flux.enableDebugger();
-}
-
 const {
   WelcomeView,
   LayoutView
@@ -23,6 +18,12 @@ export default class AppView extends Component {
 
   constructor(props) {
     super(props);
+
+    // Configuration
+    Flux.config({
+      debugLevel: config.env === 'development' ? Flux.DEBUG_DISPATCH : Flux.DEBUG_DISABLED,
+      useCache: true
+    });
 
     // Register stores
     Flux.registerStore([AppStore]);
@@ -44,7 +45,7 @@ export default class AppView extends Component {
 
   render() {
     return (
-      <Router history={browserHistory} onUpdate={this.onUpdate}>
+      <Router key={Math.random()} history={browserHistory} onUpdate={this.onUpdate}>
         <Route path='/' component={LayoutView}>
           <IndexRoute component={WelcomeView}/>
         </Route>

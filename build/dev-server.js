@@ -34,10 +34,10 @@ const compiler = webpack(config.webpack[config.env], error => {
 });
 
 const webpackDev = webpackDevMiddleware(compiler, {
-  contentBase: config.directories.src,
-  publicPath: `http://localhost:${port}/js/`,
+  contentBase: false,
+  publicPath: config.webpack.development.output.publicPath,
+  filename: 'app.js',
   hot: true,
-  inline: true,
   stats: {
     colors: true,
     hash: false,
@@ -46,19 +46,23 @@ const webpackDev = webpackDevMiddleware(compiler, {
     chunkModules: false,
     modules: false
   },
-  lazy: true,
-  noInfo: true,
+  quiet: false,
+  lazy: false,
+  noInfo: false,
   watchOptions: {
     aggregateTimeout: 300,
-    poll: false
+    poll: 1000
   },
-  historyApiFallback: true
+  historyApiFallback: true,
+  headers: {'Access-Control-Allow-Origin': '*'}
 });
 
+
 const webpackHot = webpackHotMiddleware(compiler, {
+  name: 'app',
   log: util.log,
   reload: false,
-  path: '/__webpack_hmr',
+  dynamicPublicPath: true,
   heartbeat: 10 * 1000,
   timeout: 2000,
   overlay: false
@@ -74,13 +78,19 @@ app.get('*', (req, res) => {
   res.end();
 });
 
-// Run server on default port
-server.listen(port, () => {
-  util.log('---------------------------------------');
-  util.log('|  DEVELOPMENT                        |');
-  util.log('|  Local: http://localhost:%d', server.address().port);
-  util.log('---------------------------------------');
-})
-  .on('error', error => {
-    util.log('[express]', error.message);
-  });
+// Recompile on load
+webpackDev.waitUntilValid(() => {
+  webpackDev.invalidate();
+
+  // Run server on default port
+  server
+    .listen(port, () => {
+      util.log('---------------------------------------');
+      util.log('|  DEVELOPMENT                        |');
+      util.log('|  Local: http://localhost:%d', server.address().port);
+      util.log('---------------------------------------');
+    })
+    .on('error', error => {
+      util.log('[express]', error.message);
+    });
+});

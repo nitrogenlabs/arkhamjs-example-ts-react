@@ -216,7 +216,7 @@ const webpackConfig = Immutable.fromJS({
       inject: false,
       external: config.external
     }),
-    new webpack.ProvidePlugin({'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'}),
+    new webpack.ProvidePlugin({'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'})
   ]
 });
 
@@ -224,14 +224,15 @@ config.webpack = {};
 
 // Webpack - Development
 config.webpack.development = webpackConfig
-  .mergeDeep({devtool: false})
+  .mergeDeep({devtool: 'eval'})
   .toJS();
 config.webpack.development.plugins.push(
   new webpack.LoaderOptionsPlugin({debug: true}),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'vendor.js'})
 );
-config.webpack.development.entry.app.push('webpack-hot-middleware/client');
+config.webpack.development.entry.app.concat('webpack-hot-middleware/client');
+config.webpack.development.entry.vendor.push('webpack-hot-middleware/client');
 
 // Webpack - Test
 config.webpack.test = webpackConfig
