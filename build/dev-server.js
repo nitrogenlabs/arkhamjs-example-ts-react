@@ -9,6 +9,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import useragent from 'express-useragent';
 
+// Hot reloading
+const enableHot = true;
+
 // Express
 const app = express();
 const server = Server(app);
@@ -33,40 +36,72 @@ const compiler = webpack(config.webpack[config.env], error => {
   }
 });
 
-const webpackDev = webpackDevMiddleware(compiler, {
-  contentBase: false,
-  publicPath: config.webpack.development.output.publicPath,
-  filename: 'app.js',
-  hot: true,
-  stats: {
-    colors: true,
-    hash: false,
-    timings: true,
-    chunks: false,
-    chunkModules: false,
-    modules: false
-  },
-  quiet: false,
-  lazy: false,
-  noInfo: false,
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000
-  },
-  historyApiFallback: true,
-  headers: {'Access-Control-Allow-Origin': '*'}
-});
+let webpackDevConfig, webpackHotConfig;
 
+if(enableHot) {
+  webpackDevConfig = {
+    contentBase: false,
+    publicPath: config.webpack.development.output.publicPath,
+    filename: 'app.js',
+    hot: true,
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    },
+    quiet: false,
+    lazy: false,
+    noInfo: false,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    historyApiFallback: true,
+    headers: {'Access-Control-Allow-Origin': '*'}
+  };
 
-const webpackHot = webpackHotMiddleware(compiler, {
-  name: 'app',
-  log: util.log,
-  reload: false,
-  dynamicPublicPath: true,
-  heartbeat: 10 * 1000,
-  timeout: 2000,
-  overlay: false
-});
+  webpackHotConfig = {
+    name: 'app',
+    log: util.log,
+    reload: false,
+    dynamicPublicPath: true,
+    heartbeat: 10 * 1000,
+    timeout: 2000,
+    overlay: false
+  };
+} else {
+  webpackDevConfig = {
+    contentBase: config.directories.src,
+    publicPath: `http://localhost:${port}/js`,
+    hot: true,
+    inline: true,
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    },
+    lazy: true,
+    noInfo: true,
+    historyApiFallback: true,
+    headers: {'Access-Control-Allow-Origin': '*'}
+  };
+
+  webpackHotConfig = {
+    log: util.log,
+    reload: true,
+    dynamicPublicPath: true,
+    heartbeat: 10 * 1000
+  };
+}
+
+const webpackDev = webpackDevMiddleware(compiler, webpackDevConfig);
+const webpackHot = webpackHotMiddleware(compiler, webpackHotConfig);
 
 app.use(webpackDev);
 app.use(webpackHot);
@@ -79,10 +114,7 @@ app.get('*', (req, res) => {
 });
 
 // Recompile on load
-webpackDev.waitUntilValid(() => {
-  webpackDev.invalidate();
-
-  // Run server on default port
+const runServer = () => {
   server
     .listen(port, () => {
       util.log('---------------------------------------');
@@ -93,4 +125,16 @@ webpackDev.waitUntilValid(() => {
     .on('error', error => {
       util.log('[express]', error.message);
     });
-});
+};
+
+if(enableHot) {
+  webpackDev.waitUntilValid(() => {
+    // Invalidate webpack
+    webpackDev.invalidate();
+
+    // Run server on default port
+    runServer();
+  });
+} else {
+  runServer();
+}
