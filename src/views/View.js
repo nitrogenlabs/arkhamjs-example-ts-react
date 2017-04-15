@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import {Component} from 'react';
+import PropTypes from 'prop-types';
 import config from 'config';
 import {AppActions} from 'actions';
 
@@ -78,5 +79,5 @@ export default class View extends Component {
 }
 
 View.contextTypes = {
-  router: React.PropTypes.object
+  router: PropTypes.object
 };

@@ -15,7 +15,7 @@ Getting Started
 
 ```shell
 $ npm install                   # Install Node modules listed in ./package.json (may take a while the first time)
-$ npm install -g nodemon        # Install Nodemon
+$ npm install -g gulp nodemon   # Install Gulp and Nodemon
 $ gulp                          # Compile and launch
 ```
 

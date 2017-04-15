@@ -1,21 +1,11 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import config from 'config';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Flux} from 'arkhamjs';
-import {AppActions} from 'actions';
-import * as views from 'views';
+import {LayoutView} from 'views';
 import {AppStore} from 'stores';
 
-const {
-  WelcomeView,
-  LayoutView
-} = views;
-
 export default class AppView extends Component {
-  static propTypes = {
-    location: PropTypes.object
-  };
-
   constructor(props) {
     super(props);
 
@@ -27,28 +17,23 @@ export default class AppView extends Component {
 
     // Register stores
     Flux.registerStore([AppStore]);
-
-    // Initial state
-    this.state = {};
-
-    browserHistory.listen(e => {
-      AppActions.updateView(e.pathname);
-    });
-
+    
     // Methods
     this.onUpdate = this.onUpdate.bind(this);
   }
-
+  
   onUpdate() {
+    // Scroll to the top
     window.scrollTo(0, 0);
+    return true;
   }
-
+  
   render() {
     return (
-      <Router key={Math.random()} history={browserHistory} onUpdate={this.onUpdate}>
-        <Route path='/' component={LayoutView}>
-          <IndexRoute component={WelcomeView}/>
-        </Route>
+      <Router
+        forceRefresh={'pushState' in window.history}
+        getUserConfirmation={this.onUpdate}>
+        <Route path='/' component={LayoutView}/>
       </Router>
     );
   }

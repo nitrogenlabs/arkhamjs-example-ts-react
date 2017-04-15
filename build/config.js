@@ -238,7 +238,14 @@ config.webpack.development.entry.vendor.push('webpack-hot-middleware/client');
 config.webpack.test = webpackConfig
   .delete('entry')
   .delete('output')
-  .mergeDeep({devtool: 'cheap-module-source-map'})
+  .mergeDeep({
+    devtool: 'cheap-module-source-map',
+    externals: {
+      'react/addons': true,
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': true
+    }
+  })
   .toJS();
 config.webpack.test.plugins.push(new webpack.LoaderOptionsPlugin({debug: true}));
 config.webpack.test.module.rules.push({

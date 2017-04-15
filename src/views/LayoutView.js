@@ -1,4 +1,7 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Route} from 'react-router';
+import {HomeView} from 'views';
 
 export default class LayoutView extends Component {
   static propTypes = {
@@ -8,7 +11,7 @@ export default class LayoutView extends Component {
   render() {
     return (
       <div className="container view-layout">
-        {this.props.children}
+        <Route path="/" component={HomeView}/>
       </div>
     );
   }

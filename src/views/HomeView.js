@@ -1,14 +1,14 @@
 import React from 'react';
 import {Flux} from 'arkhamjs';
 import {AppActions} from 'actions';
-import {View} from 'views';
+import View from './View';
 import {AppConstants} from 'constants';
 import {StringService} from 'services';
 import {Icon} from 'components';
 
-export default class WelcomeView extends View {
+export default class HomeView extends View {
   constructor(props) {
-    super(props, 'Welcome');
+    super(props, 'Demo');
 
     // Methods
     this.onChange = this.onChange.bind(this);
@@ -44,14 +44,10 @@ export default class WelcomeView extends View {
     return (
       <div className="view view-welcome">
         <div className="logo"><img className="logo_img" src="/img/logo-main.png"/></div>
-
         <div className="helloTxt">{StringService.uppercaseWords(this.state.content)}</div>
         <div className="form">
           <input ref={r => this._input = r} type="text" name="test"/>
-          <button className="btn btn-primary" onClick={this.onChange}>
-            <Icon name="pencil"/>
-            UPDATE
-          </button>
+          <button className="btn btn-primary" onClick={this.onChange}><Icon name="pencil"/>UPDATE</button>
         </div>
       </div>
     );

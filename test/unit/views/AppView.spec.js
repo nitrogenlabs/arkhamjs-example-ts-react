@@ -1,5 +1,5 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import {AppView} from 'views';
 import {expect} from 'chai';
 
@@ -8,10 +8,10 @@ describe('AppView', () => {
 
   before(() => {
     // Render
-    rendered = TestUtils.renderIntoDocument(<AppView/>);
+    rendered = shallow(<AppView/>);
   });
 
   it('should render', () => {
-    return expect(rendered).to.be.ok;
+    return expect(rendered.exists()).to.be.true;
   });
 });

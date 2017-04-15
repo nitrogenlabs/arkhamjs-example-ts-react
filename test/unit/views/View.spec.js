@@ -1,5 +1,5 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import {View} from 'views';
 import {AppActions} from 'actions';
 import sinon from 'sinon';
@@ -14,7 +14,7 @@ describe('View', () => {
     sandbox = sinon.sandbox.create();
 
     // Render
-    rendered = TestUtils.renderIntoDocument(<View/>);
+    rendered = shallow(<View/>);
   });
 
   after(() => {
@@ -22,12 +22,12 @@ describe('View', () => {
   });
 
   it('should render', () => {
-    return expect(rendered).to.be.ok;
+    return expect(rendered.exists()).to.be.true;
   });
 
   it('#setTitle', () => {
     let name = 'Test';
-    const title = rendered.setTitle(name);
+    const title = rendered.instance().setTitle(name);
     return expect(title).to.eq(`${name} :: ${config.appName}`);
   });
 
@@ -37,7 +37,7 @@ describe('View', () => {
 
     before(() => {
       gotoStub = sandbox.stub(AppActions, 'goto');
-      rendered.goto(path);
+      rendered.instance().goto(path);
     });
 
     after(() => {

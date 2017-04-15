@@ -2,7 +2,6 @@ import sinon from 'sinon';
 import {expect} from 'chai';
 import {AppActions} from 'actions';
 import {AppConstants} from 'constants';
-import {browserHistory} from 'react-router';
 
 describe('ConcessionActions', () => {
   let sandbox;
@@ -20,27 +19,13 @@ describe('ConcessionActions', () => {
   });
 
   describe('#goto', () => {
-    let browserStub;
-
     before(() => {
-      // Stubs
-      browserStub = sandbox.stub(browserHistory, 'push');
-
-      // Method
-      AppActions.goto(path);
-    });
-
-    after(() => {
-      // Stubs
-      browserStub.restore();
-    });
-
-    it('should call browserHistory.push', () => {
-      return expect(browserStub.called).to.be.true;
     });
 
     it('should go to a route', () => {
-      expect(browserStub.args[0][0]).to.be.eq(`/${path}`);
+      // Method
+      const history = AppActions.goto(path);
+      return expect(history.location.pathname).to.eq(`/${path}`);
     });
   });
 

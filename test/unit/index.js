@@ -16,6 +16,6 @@ import 'test/unit/stores/AppStore.spec';
 
 // Views
 import 'test/unit/views/AppView.spec';
+import 'test/unit/views/HomeView.spec';
 import 'test/unit/views/LayoutView.spec';
 import 'test/unit/views/View.spec';
-import 'test/unit/views/WelcomeView.spec';

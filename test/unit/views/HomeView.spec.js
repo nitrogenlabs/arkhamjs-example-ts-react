@@ -1,11 +1,11 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import {WelcomeView} from 'views';
+import {mount} from 'enzyme';
+import {HomeView} from 'views';
 import {AppActions} from 'actions';
 import sinon from 'sinon';
 import {expect} from 'chai';
 
-describe('WelcomeView', () => {
+describe('HomeView', () => {
   let rendered, sandbox;
 
   before(() => {
@@ -13,7 +13,7 @@ describe('WelcomeView', () => {
     sandbox = sinon.sandbox.create();
 
     // Render
-    rendered = TestUtils.renderIntoDocument(<WelcomeView router={{}}/>);
+    rendered = mount(<HomeView/>);
   });
 
   after(() => {
@@ -21,7 +21,7 @@ describe('WelcomeView', () => {
   });
 
   it('should render', () => {
-    return expect(rendered).to.be.ok;
+    return expect(rendered.exists()).to.be.true;
   });
 
   describe('#onChange', () => {
@@ -33,10 +33,10 @@ describe('WelcomeView', () => {
       updateStub = sandbox.stub(AppActions, 'updateContent');
 
       // Vars
-      rendered._input.value = inputVal;
+      rendered.instance()._input.value = inputVal;
 
       // Method
-      rendered.onChange();
+      rendered.instance().onChange();
     });
 
     after(() => {
