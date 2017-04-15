@@ -227,7 +227,7 @@ config.webpack.test = webpackConfig
   .toJS();
 config.webpack.test.plugins.push(new webpack.LoaderOptionsPlugin({debug: true}));
 config.webpack.test.module.rules.push({
-  use: [{loader: 'isparta-loader'}],
+  use: [{loader: 'istanbul-instrumenter-loader'}],
   test: /\.js$/,
   include: path.resolve(`${config.directories.src}/`),
   enforce: 'post'

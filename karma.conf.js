@@ -16,12 +16,10 @@ module.exports = cfg => {
       useIframe: false
     },
     concurrency: 1,
-    coverageReporter: {
+    coverageIstanbulReporter: {
       dir: 'coverage',
-      instrumenters: {isparta: require('isparta')},
-      instrumenter: {'src/**/*.js': ['isparta']},
-      instrumenterConfig: {embedSource: true},
-      reporters: [{type: 'html', subdir: 'unit'}]
+      reports: ['html'],
+      fixWebpackSourcePaths: true
     },
     customLaunchers: {
       ChromeCustom: {
@@ -49,13 +47,12 @@ module.exports = cfg => {
       'karma-mocha',
       'karma-sinon',
       'karma-chai',
-      'karma-coverage',
+      'karma-coverage-istanbul-reporter',
       'karma-mocha-reporter',
       'karma-sourcemap-loader'
     ],
     preprocessors: {
-      [config.path.test.unit]: ['webpack'],
-      'src/**/*.js': ['coverage']
+      [config.path.test.unit]: ['webpack']
     },
     proxies: {
       '/icons.svg': '/base/test/data/icons.svg'
@@ -65,7 +62,7 @@ module.exports = cfg => {
       output: 'minimal',
       showDiff: true
     },
-    reporters: ['mocha', 'coverage'],
+    reporters: ['mocha', 'coverage-istanbul'],
     singleRun: true,
 
     // Webpack
