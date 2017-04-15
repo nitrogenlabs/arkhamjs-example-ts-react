@@ -29,7 +29,8 @@ module.exports = cfg => {
         flags: [
           '--headless',
           '--disable-gpu',
-          '--remote-debugging-port=9222 https://chromium.org'
+          '--remote-debugging-port=9222 https://chromium.org',
+          process.env.TRAVIS ? '--no-sandbox' : ''
         ]
       }
     },
