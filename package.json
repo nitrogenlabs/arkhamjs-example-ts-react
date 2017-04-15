@@ -30,6 +30,7 @@
   },
   "scripts": {
     "development": "NODE_ENV=development gulp",
+    "docs": "gulp docs",
     "preprod": "NODE_ENV=preprod gulp preprod",
     "production": "NODE_ENV=production gulp production",
     "test": "NODE_ENV=test gulp test"

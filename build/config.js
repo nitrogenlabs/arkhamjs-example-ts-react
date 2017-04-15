@@ -92,7 +92,7 @@ config.path = {
   },
 
   tmp: 'tmp',
-  doc: './doc',
+  docs: './docs',
   test: {
     e2e: config.relative(config.directories.test, 'e2e/**/*.js'),
     unit: config.relative(config.directories.test, 'unit/index.js')
@@ -120,28 +120,6 @@ config.autoprefixer = [
   'last 2 Safari versions',
   'Explorer >= 10'
 ];
-
-// Documentation
-config.yuidoc = {
-  parser: {
-    project: {
-      name: config.title,
-      description: 'Documentation',
-      version: config.version,
-      url: 'http://yuilibrary.com/projects/yuidoc',
-      logo: 'http://yuilibrary.com/img/yui-logo.png',
-      options: {
-        external: {
-          data: 'http://yuilibrary.com/yui/docs/api/data.json'
-        },
-        linkNatives: true,
-        attributesEmit: true,
-        outdir: 'docs/api'
-      }
-    }
-  },
-  render: {}
-};
 
 // Webpack common config
 const webpackConfig = Immutable.fromJS({
