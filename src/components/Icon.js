@@ -18,7 +18,7 @@ export default class Icon extends Component {
 
   addStyles() {
     let cls = [];
-    let size = this.props.size.toLowerCase();
+    const size = this.props.size.toLowerCase();
 
     if(size !== '') {
       cls = cls.push('icon-' + size);
@@ -28,7 +28,7 @@ export default class Icon extends Component {
   }
 
   render() {
-    let useTag = `<use xlink:href="/icons/icons.svg#${this.props.name}" />`;
+    const useTag = `<use xlink:href="/icons/icons.svg#${this.props.name}" />`;
     return <svg className={this.getStyles()} dangerouslySetInnerHTML={{__html: useTag}}/>;
   }
 }

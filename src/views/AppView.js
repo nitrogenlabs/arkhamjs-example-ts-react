@@ -1,40 +1,31 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React from 'react';
+import {Route} from 'react-router-dom';
+import {Arkham, Flux} from 'arkhamjs';
 import config from 'config';
-import {Flux} from 'arkhamjs';
 import {LayoutView} from 'views';
 import {AppStore} from 'stores';
 
-export default class AppView extends Component {
+export default class AppView extends React.Component {
   constructor(props) {
     super(props);
-
+    
     // Configuration
-    Flux.config({
+    this.config = {
       debugLevel: config.env === 'development' ? Flux.DEBUG_DISPATCH : Flux.DEBUG_DISABLED,
       useCache: true
-    });
-
-    // Register stores
-    Flux.registerStore([AppStore]);
+    };
     
-    // Methods
-    this.onUpdate = this.onUpdate.bind(this);
-  }
-  
-  onUpdate() {
-    // Scroll to the top
-    window.scrollTo(0, 0);
-    return true;
+    // Stores
+    this._stores = [AppStore];
   }
   
   render() {
     return (
-      <Router
-        forceRefresh={'pushState' in window.history}
-        getUserConfirmation={this.onUpdate}>
+      <Arkham
+        config={this.config}
+        stores={this._stores}>
         <Route path='/' component={LayoutView}/>
-      </Router>
+      </Arkham>
     );
   }
 }

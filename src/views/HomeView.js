@@ -1,15 +1,14 @@
 import React from 'react';
-import {Flux} from 'arkhamjs';
+import {ArkhamActions, Flux, View} from 'arkhamjs';
 import {AppActions} from 'actions';
-import View from './View';
 import {AppConstants} from 'constants';
 import {StringService} from 'services';
 import {Icon} from 'components';
 
 export default class HomeView extends View {
   constructor(props) {
-    super(props, 'Demo');
-
+    super(props);
+    
     // Methods
     this.onChange = this.onChange.bind(this);
     this.onUpdateContent = this.onUpdateContent.bind(this);
@@ -20,12 +19,15 @@ export default class HomeView extends View {
     };
   }
 
-  viewWillMount() {
+  componentWillMount() {
+    // Update title
+    ArkhamActions.updateTitle('Demo');
+    
     // Add listeners
     Flux.on(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
   }
-
-  viewWillUnmount() {
+  
+  componentWillUnmount() {
     // Add listeners
     Flux.off(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
   }

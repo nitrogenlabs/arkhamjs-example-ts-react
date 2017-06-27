@@ -1,18 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Route} from 'react-router';
+import {View, ViewContainer} from 'arkhamjs';
 import {HomeView} from 'views';
 
-export default class LayoutView extends Component {
+export default class LayoutView extends View {
   static propTypes = {
     children: PropTypes.object
   };
-
+  
+  constructor(props) {
+    super(props);
+    
+    this.routes = [
+      {path: '/', component: HomeView, key: 'name'}
+    ];
+  }
+  
   render() {
-    return (
-      <div className="container view-layout">
-        <Route path="/" component={HomeView}/>
-      </div>
-    );
+    return <ViewContainer className="container view-layout" routes={this.routes}/>;
   }
 }

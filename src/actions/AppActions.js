@@ -1,12 +1,13 @@
 import {Flux} from 'arkhamjs';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
 import {AppConstants} from 'constants';
 
 const AppActions = {
   goto: route => {
-    const history = createHistory();
-    history.push(`/${route}`);
-    return history;
+    console.log('route', route);
+    // const history = createHistory();
+    // history.push(`/${route}`);
+    // return history;
   },
 
   updateContent: content => {

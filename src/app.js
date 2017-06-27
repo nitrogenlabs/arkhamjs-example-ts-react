@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import {React, ReactDOM} from 'arkhamjs';
 import AppView from 'views/AppView';
 
 const target = document.getElementById('app');
