@@ -1,4 +1,0 @@
-export default {
-  UPDATE_CONTENT: 'APP_UPDATE_CONTENT',
-  UPDATE_VIEW: 'APP_UPDATE_VIEW'
-};

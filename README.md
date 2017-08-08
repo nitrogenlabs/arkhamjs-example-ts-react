@@ -1,9 +1,15 @@
 ArkhamJS Skeleton App
 =====================
 
-A simple skeleton to start you off on your ReactJS project. Uses [ArkhamJS](https://github.com/nitrogenlabs/arkhamjs) framework for a flux architecture.
+A simple skeleton to start you off on your ReactJS project. Uses the following modules:
+ - [arkhamjs](https://github.com/nitrogenlabs/arkhamjs) - A clean, simple Flux framework.
+ - [react](https://www.npmjs.com/package/react) - A declarative, efficient, and flexible JavaScript library for building user interfaces.
+ - [typescript](https://www.npmjs.com/package/typescript) - TypeScript is a language for application scale JavaScript development.
+ - [webpack](https://www.npmjs.com/package/webpack) - Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
+ - [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
 
 [![Travis](https://img.shields.io/travis/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://travis-ci.org/nitrogenlabs/arkhamjs-skeleton)
+[![TypeScript](https://badges.frapsoft.com/typescript/version/typescript-next.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![Issues](http://img.shields.io/github/issues/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://github.com/nitrogenlabs/arkhamjs-skeleton/issues)
 [![Gitter](https://img.shields.io/gitter/room/NitrgenLabs/arkhamjs.svg?style=flat-square)](https://gitter.im/NitrogenLabs/arkhamjs)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://opensource.org/licenses/MIT)
@@ -22,17 +28,20 @@ $ gulp                          # Compile and launch
 Usage
 -----
 
-#### `gulp` also `gulp dev`
-Runs the webpack build system just like in `compile` but enables HMR. The webpack dev server can be found at `localhost:3000`.
+#### `npm start` also `npm run development`
+Runs the webpack build system to compile scripts on the fly. Run local web server. The default webpack dev server can be found at `localhost:5000`. The port can be changed in the config.
 
-#### `gulp compile`
-Runs the Webpack build system with your current NODE_ENV and compiles the application to disk (`~/dist`). Production builds will fail on eslint errors (but not on warnings).
+#### `npm run docs`
+Compile documentation for the application.
 
-#### `gulp test`
-Runs unit tests with Karma.
+#### `npm test`
+Runs tslint then run unit tests with Jest.
 
-#### `gulp deploy`
-Helper script to run tests and then, on success, compile your application.
+#### `npm run compile`
+Run tests and then, on success, compile your application for a pre-production environment. 
+
+#### `npm run production`
+Run tests and then, on success, compile your application for a production environment. Run local web server. The default web server url is: `localhost:3000`. The port can be changed in the config.
 
 ### Configuration
 
@@ -47,21 +56,18 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 .
 ├── build                    # All build-related configuration
 │   ├── tasts                # Gulp configurations
-│   ├── config.js            # Project configuration settings
-│   └── dev-server.js        # Development server configuration
-│   └── prod-server.js       # Production server configuration
+│   ├── config.ts            # Project configuration settings
+│   └── dev-server.ts        # Development server configuration
+│   └── prod-server.ts       # Production server configuration
 ├── coverage                 # Unit test coverage reports
 ├── dist                     # Compiled files
-│   ├── dev                  # Development files
-│   └── prod                 # Production files
+│   ├── development          # Development files
+│   └── production           # Production files
 ├── js                       # External js files
 ├── src                      # Application source code
 │   ├── actions              # Flux actions
 │   ├── components           # React components
-│   ├── config               # Configuration files
-│       ├── development      # Development configuration
-│       └── production       # Production configuration
-│   ├── constants            # Collection of constants used in routes and events
+│   ├── config               # App Configuration
 │   ├── errors               # Custom errors
 │   ├── fonts                # Font files
 │   ├── icons                # SVG files
@@ -70,8 +76,7 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 │   ├── stores               # Redux store configuration
 │   ├── styles               # SCSS styles
 │   ├── views                # React components/views that live at a route
-│   └── index.js             # Application bootstrap and rendering
-└── test                     # Test specs
+│   └── index.ts             # Application bootstrap and rendering
 ```
 
 ### Components vs. Views vs. Layouts
@@ -92,7 +97,6 @@ You can redefine which packages to treat as vendor dependencies by editing the v
 ```js
 [
   'arkhamjs',
-  'babel-polyfill',
   'bluebird',
   'react',
   'react-dom',
@@ -117,7 +121,6 @@ import MyComponent from 'components/my-component'; // with alias
   services    => '~/src/services'
   stores      => '~/src/stores'
   styles      => '~/src/styles'
-  test        => '~/test'
   views       => '~/src/views'
 ```
 
@@ -156,7 +159,7 @@ Furthermore, this `styles` directory is aliased for sass imports, which further 
 Testing
 -------
 
-To add a unit test, simply create `.spec.js` file in `~/test/unit`. All imports will be relative to the "~/src" directory. The entry point for Karma uses webpack's custom require to load all these files, and Jasmine will be available to you within your test without the need to import them.
+To add a unit test, simply create a `*.test.js` file within the `/src` directory. All imports will be relative to the "~/src" directory. The the testing cofiguration as well as the directory aliases are located in the `package.json` file. Jest will be available to you within your test without the need to import.
 
 Troubleshooting
 ---------------
