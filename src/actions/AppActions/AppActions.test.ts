@@ -1,4 +1,5 @@
-import {AppActions, AppConstants} from './AppActions';
+import {AppConstants} from '../../constants';
+import {AppActions} from './AppActions';
 
 describe('AppActions', () => {
   const path: string = 'test';

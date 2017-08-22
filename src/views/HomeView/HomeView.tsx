@@ -1,6 +1,7 @@
 import {ArkhamActions, Flux, View, ViewProps} from 'arkhamjs';
 import * as React from 'react';
-import {AppActions, AppConstants} from '../../actions';
+import {AppActions} from '../../actions';
+import {AppConstants} from '../../constants';
 import {Icon} from '../../components';
 import {StringService} from '../../services';
 

@@ -1,9 +1,8 @@
-import {AppActions} from 'actions';
 import {mount} from 'enzyme';
-import {SpyInstance} from 'jest';
 import * as React from 'react';
 import {HomeView} from 'views';
-import {AppConstants} from '../../actions/AppActions/AppActions';
+import {AppActions} from '../../actions';
+import {AppConstants} from '../../constants';
 
 describe('HomeView', () => {
   let rendered;
