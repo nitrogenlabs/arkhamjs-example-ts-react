@@ -171,6 +171,7 @@ const webpackConfig = {
       actions: configBase.absolute(configBase.directories.src, 'actions'),
       components: configBase.absolute(configBase.directories.src, 'components'),
       config: configBase.absolute(configBase.directories.src, 'config', configBase.env),
+      constants: configBase.absolute(configBase.directories.src, 'constants'),
       errors: configBase.absolute(configBase.directories.src, 'errors'),
       services: configBase.absolute(configBase.directories.src, 'services'),
       stores: configBase.absolute(configBase.directories.src, 'stores'),

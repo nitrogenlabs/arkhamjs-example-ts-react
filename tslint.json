@@ -86,6 +86,7 @@
     "no-invalid-this": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
+    "no-submodule-imports": false,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": false,
     "no-unsafe-finally": true,

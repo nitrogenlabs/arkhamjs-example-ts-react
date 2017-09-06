@@ -20,27 +20,26 @@ Getting Started
 - Clone the repo and install the necessary node modules:
 
 ```shell
-$ npm install                   # Install Node modules listed in ./package.json (may take a while the first time)
-$ npm install -g gulp nodemon   # Install Gulp and Nodemon
-$ gulp                          # Compile and launch
+$ npm install -g yarn gulp nodemon  # Install Gulp and Nodemon
+$ yarn                              # Install Node modules listed in ./package.json (may take a while the first time)
 ```
 
 Usage
 -----
 
-#### `npm start` also `npm run development`
+#### `yarn start` also `yarn run development`
 Runs the webpack build system to compile scripts on the fly. Run local web server. The default webpack dev server can be found at `localhost:5000`. The port can be changed in the config.
 
-#### `npm run docs`
+#### `yarn run docs`
 Compile documentation for the application.
 
-#### `npm test`
+#### `yarn test`
 Runs tslint then run unit tests with Jest.
 
-#### `npm run compile`
+#### `yarn run compile`
 Run tests and then, on success, compile your application for a pre-production environment. 
 
-#### `npm run production`
+#### `yarn run production`
 Run tests and then, on success, compile your application for a production environment. Run local web server. The default web server url is: `localhost:3000`. The port can be changed in the config.
 
 ### Configuration
@@ -68,6 +67,7 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 │   ├── actions              # Flux actions
 │   ├── components           # React components
 │   ├── config               # App Configuration
+│   ├── constants            # App constants
 │   ├── errors               # Custom errors
 │   ├── fonts                # Font files
 │   ├── icons                # SVG files

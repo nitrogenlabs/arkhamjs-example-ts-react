@@ -1,4 +1,4 @@
-import {AppConstants} from '../../constants';
+import {AppConstants} from 'constants/AppConstants';
 import {AppActions} from './AppActions';
 
 describe('AppActions', () => {
