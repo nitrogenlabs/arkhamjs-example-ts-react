@@ -37,3 +37,4 @@ jspm_packages
 # Compiled
 dist
 docs
+/yarn.lock
