@@ -1,9 +1,9 @@
+import {AppActions} from 'actions';
 import {ArkhamActions, Flux, View, ViewProps} from 'arkhamjs';
+import {Icon} from 'components';
+import {AppConstants} from 'constants/AppConstants';
 import * as React from 'react';
-import {AppActions} from '../../actions';
-import {AppConstants} from '../../constants';
-import {Icon} from '../../components';
-import {StringService} from '../../services';
+import {StringService} from 'services';
 
 export interface HomeState {
   content: string;

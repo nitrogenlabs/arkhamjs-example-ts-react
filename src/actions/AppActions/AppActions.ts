@@ -1,6 +1,6 @@
 import {Flux, FluxAction} from 'arkhamjs';
+import {AppConstants} from 'constants/AppConstants';
 import {createBrowserHistory, History} from 'history';
-import {AppConstants} from '../../constants';
 
 export class AppActions {
   static goto(route: string): History {
