@@ -1,5 +1,5 @@
 import {AppActions} from 'actions';
-import {ArkhamActions, Flux, View, ViewProps} from 'arkhamjs';
+import {ArkhamActions, Flux, ViewBase, ViewProps} from 'arkhamjs';
 import {Icon} from 'components';
 import {AppConstants} from 'constants/AppConstants';
 import * as React from 'react';
@@ -9,7 +9,7 @@ export interface HomeState {
   content: string;
 }
 
-export class HomeView extends View<ViewProps, HomeState> {
+export class HomeView extends ViewBase<ViewProps, HomeState> {
   input: HTMLInputElement;
   
   constructor(props) {
