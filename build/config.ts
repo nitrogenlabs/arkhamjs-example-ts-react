@@ -122,7 +122,15 @@ const webpackConfig = {
     app: [
       configPath.src.entry
     ],
-    vendor: Object.keys(appPackage.dependencies)
+    vendor: [
+      'arkhamjs',
+      'lodash',
+      'prop-types',
+      'react',
+      'react-addons-css-transition-group',
+      'react-dom',
+      'react-router-dom'
+    ]
   },
   externals: {},
   module: {
