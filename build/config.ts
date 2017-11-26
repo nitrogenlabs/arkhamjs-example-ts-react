@@ -122,12 +122,7 @@ const webpackConfig = {
     app: [
       configPath.src.entry
     ],
-    vendor: [
-      'arkhamjs',
-      'react',
-      'react-dom',
-      'react-router'
-    ]
+    vendor: Object.keys(appPackage.dependencies)
   },
   externals: {},
   module: {
@@ -168,8 +163,7 @@ const webpackConfig = {
     alias: {
       actions: configBase.absolute(configBase.directories.src, 'actions'),
       components: configBase.absolute(configBase.directories.src, 'components'),
-      config: configBase.absolute(configBase.directories.src, 'config', configBase.env),
-      constants: configBase.absolute(configBase.directories.src, 'constants'),
+      config: configBase.absolute(configBase.directories.src, 'config'),
       errors: configBase.absolute(configBase.directories.src, 'errors'),
       services: configBase.absolute(configBase.directories.src, 'services'),
       stores: configBase.absolute(configBase.directories.src, 'stores'),
