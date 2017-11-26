@@ -1,23 +1,25 @@
 import {AppActions} from 'actions';
 import {AppConstants} from 'constants/AppConstants';
-import {mount} from 'enzyme';
 import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {HomeView} from 'views';
+import SpyInstance = jest.SpyInstance;
 
 describe('HomeView', () => {
-  let rendered;
+  let instance, rendered;
 
   beforeAll(() => {
     // Render
-    rendered = mount(<HomeView/>);
+    rendered = renderer.create(<HomeView/>);
+    instance = rendered.root.instance;
   });
 
   it('should render', () => {
-    return expect(rendered.exists()).toBe(true);
+    return expect(rendered).toBeDefined();
   });
 
   describe('#onChange', () => {
-    let updateSpy;
+    let updateSpy: SpyInstance;
     const inputVal: string = 'test';
 
     beforeAll(() => {
@@ -26,10 +28,10 @@ describe('HomeView', () => {
       updateSpy.mockReturnValue({type: AppConstants.UPDATE_CONTENT, content: inputVal});
 
       // Vars
-      rendered.instance().input.value = inputVal;
+      instance.input = {value: inputVal};
 
       // Method
-      rendered.instance().onChange();
+      instance.onChange();
     });
 
     afterAll(() => {

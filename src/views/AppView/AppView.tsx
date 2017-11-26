@@ -1,9 +1,9 @@
 import {Arkham, FluxDebugLevel, FluxOptions} from 'arkhamjs';
-import {config} from 'config';
 import * as React from 'react';
 import {Route} from 'react-router-dom';
 import {AppStore} from 'stores';
 import {LayoutView} from 'views';
+import {Config} from '../../config';
 
 export class AppView extends React.Component<{}, {}> {
   private arkhamConfig: FluxOptions;
@@ -13,8 +13,9 @@ export class AppView extends React.Component<{}, {}> {
     super(props);
     
     // Configuration
+    const env: string = Config.get('environment');
     this.arkhamConfig = {
-      debugLevel: config.env === 'development' ? FluxDebugLevel.DISPATCH : FluxDebugLevel.DISABLED,
+      debugLevel: env === 'development' ? FluxDebugLevel.DISPATCH : FluxDebugLevel.DISABLED,
       useCache: true
     };
     

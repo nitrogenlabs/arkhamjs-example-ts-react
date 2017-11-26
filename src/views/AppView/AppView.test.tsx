@@ -1,5 +1,5 @@
-import {shallow} from 'enzyme';
 import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {AppView} from 'views';
 
 describe('AppView', () => {
@@ -7,10 +7,10 @@ describe('AppView', () => {
 
   beforeAll(() => {
     // Render
-    rendered = shallow(<AppView/>);
+    rendered = renderer.create(<AppView/>);
   });
 
   it('should render', () => {
-    return expect(rendered.exists()).toBe(true);
+    return expect(rendered).toBeDefined();
   });
 });

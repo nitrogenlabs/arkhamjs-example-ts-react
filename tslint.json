@@ -37,8 +37,7 @@
     ],
     "comment-format": [
       true,
-      "check-space",
-      "check-uppercase"
+      "check-space"
     ],
     "cyclomatic-complexity": true,
     "curly": true,
@@ -83,6 +82,7 @@
     ],
     "no-empty-interface": false,
     "no-eval": false,
+    "no-implicit-dependencies": false,
     "no-invalid-this": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,

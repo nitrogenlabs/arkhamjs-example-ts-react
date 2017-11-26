@@ -1,4 +1,4 @@
-import {View, ViewContainer, ViewProps} from 'arkhamjs';
+import {ViewBase, ViewContainer, ViewProps} from 'arkhamjs';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {RouteProps} from 'react-router';
@@ -8,11 +8,11 @@ export interface LayoutProps extends ViewProps {
   readonly children: React.ReactNode;
 }
 
-export class LayoutView extends View<LayoutProps, {}> {
+export class LayoutView extends ViewBase<LayoutProps, {}> {
   routes: RouteProps[];
   
   static propTypes: object = {
-    ...View.propTypes,
+    ...ViewBase.propTypes,
     children: PropTypes.object
   };
   

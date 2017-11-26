@@ -124,11 +124,9 @@ const webpackConfig = {
     ],
     vendor: [
       'arkhamjs',
-      'bluebird',
       'react',
       'react-dom',
-      'react-router',
-      'whatwg-fetch'
+      'react-router'
     ]
   },
   externals: {},

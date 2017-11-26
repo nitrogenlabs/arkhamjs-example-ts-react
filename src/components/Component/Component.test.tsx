@@ -1,25 +1,26 @@
-import {shallow} from 'enzyme';
 import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {Component} from './Component';
 
 describe('Component', () => {
-  let rendered;
+  let instance, rendered;
 
   beforeAll(() => {
-    rendered = shallow(<Component className="test"/>);
+    rendered = renderer.create(<Component className="test"/>);
+    instance = rendered.root.instance;
   });
 
   it('should render', () => {
-    return expect(rendered.exists()).toBe(true);
+    return expect(rendered).toBeDefined();
   });
 
   it('#getStyles', () => {
-    const styles = rendered.instance().getStyles();
+    const styles = instance.getStyles();
     return expect(styles).toBe('test component');
   });
 
   it('#addStyles', () => {
-    const styles = rendered.instance().addStyles();
+    const styles = instance.addStyles();
     return expect(styles.length).toBe(0);
   });
 });

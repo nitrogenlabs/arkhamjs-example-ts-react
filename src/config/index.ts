@@ -1,4 +1,4 @@
-import {merge} from 'lodash';
+import {get, merge} from 'lodash';
 
 export interface AppConfig {
   readonly appId?: string;
@@ -14,26 +14,32 @@ export interface EnvConfig {
   readonly test: AppConfig;
 }
 
-const values: EnvConfig = {
-  default: {
-    env: process.env.NODE_ENV
-  },
-  development: {
-    appId: 'arkhamjs-skeleton',
-    appName: 'Arkham Skeleton'
-  },
-  preprod: {
-    appId: 'arkhamjs-skeleton',
-    appName: 'Arkham Skeleton'
-  },
-  production: {
-    appId: 'arkhamjs-skeleton',
-    appName: 'Arkham Skeleton'
-  },
-  test: {
-    appId: 'arkhamjs-skeleton',
-    appName: 'Arkham Skeleton'
+export class Config {
+  static values: EnvConfig = {
+    default: {
+      env: process.env.NODE_ENV
+    },
+    development: {
+      appId: 'arkhamjs-skeleton',
+      appName: 'Arkham Skeleton'
+    },
+    preprod: {
+      appId: 'arkhamjs-skeleton',
+      appName: 'Arkham Skeleton'
+    },
+    production: {
+      appId: 'arkhamjs-skeleton',
+      appName: 'Arkham Skeleton'
+    },
+    test: {
+      appId: 'arkhamjs-skeleton',
+      appName: 'Arkham Skeleton'
+    }
+  };
+  
+  static get(path: string | string[]): any {
+    const environment: string = process.env.NODE_ENV || 'development';
+    const configValues: object = merge(this.values.default, this.values[environment], {environment});
+    return get(configValues, path);
   }
-};
-
-export const config: AppConfig = merge(values.default, values[process.env.NODE_ENV || 'development']);
+}

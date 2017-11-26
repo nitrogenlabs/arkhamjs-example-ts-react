@@ -1,5 +1,6 @@
-import {shallow} from 'enzyme';
+import {Arkham} from 'arkhamjs';
 import * as React from 'react';
+import * as renderer from 'react-test-renderer';
 import {LayoutView} from 'views';
 
 describe('LayoutView', () => {
@@ -7,10 +8,10 @@ describe('LayoutView', () => {
   
   beforeAll(() => {
     // Render
-    rendered = shallow(<LayoutView/>);
+    rendered = renderer.create(<Arkham><LayoutView/></Arkham>);
   });
   
   it('should render', () => {
-    return expect(rendered.exists()).toBe(true);
+    return expect(rendered).toBeDefined();
   });
 });
