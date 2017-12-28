@@ -1,4 +1,4 @@
-import {AppConstants} from 'constants/AppConstants';
+import {AppConstants} from '../../constants/AppConstants';
 import {AppActions} from './AppActions';
 
 describe('AppActions', () => {
@@ -16,9 +16,9 @@ describe('AppActions', () => {
   describe('#updateContent', () => {
     let action;
 
-    beforeAll(() => {
+    beforeAll(async () => {
       // Method
-      action = AppActions.updateContent(content);
+      action = await AppActions.updateContent(content);
     });
 
     it('should dispatch AppConstants.UPDATE_CONTENT', () => {
@@ -33,9 +33,9 @@ describe('AppActions', () => {
   describe('#updateView', () => {
     let action;
 
-    beforeAll(() => {
+    beforeAll(async () => {
       // Method
-      action = AppActions.updateView(path);
+      action = await AppActions.updateView(path);
     });
 
     it('should dispatch AppConstants.UPDATE_VIEW', () => {

@@ -1,9 +1,10 @@
-import {AppActions} from 'actions';
-import {ArkhamActions, Flux, ViewBase, ViewProps} from 'arkhamjs';
-import {Icon} from 'components';
-import {AppConstants} from 'constants/AppConstants';
+import {Flux} from 'arkhamjs';
+import {ArkhamRouteActions, ViewBase, ViewProps} from 'arkhamjs-views-react';
 import * as React from 'react';
-import {StringService} from 'services';
+import {AppActions} from '../../actions';
+import {Icon} from '../../components';
+import {AppConstants} from '../../constants/AppConstants';
+import {StringService} from '../../services';
 
 export interface HomeState {
   content: string;
@@ -11,10 +12,10 @@ export interface HomeState {
 
 export class HomeView extends ViewBase<ViewProps, HomeState> {
   input: HTMLInputElement;
-  
+
   constructor(props) {
     super(props);
-    
+
     // Methods
     this.onChange = this.onChange.bind(this);
     this.onUpdateContent = this.onUpdateContent.bind(this);
@@ -27,12 +28,12 @@ export class HomeView extends ViewBase<ViewProps, HomeState> {
 
   componentWillMount(): void {
     // Update title
-    ArkhamActions.updateTitle('Demo');
-    
+    ArkhamRouteActions.updateTitle('Demo');
+
     // Add listeners
     Flux.on(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
   }
-  
+
   componentWillUnmount(): void {
     // Add listeners
     Flux.off(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
@@ -51,11 +52,11 @@ export class HomeView extends ViewBase<ViewProps, HomeState> {
   render(): JSX.Element {
     return (
       <div className="view view-home">
-        <div className="logo"><img className="logo_img" src="/img/logo-main.png"/></div>
+        <div className="logo"><img className="logo_img" src="/img/logo-main.png" /></div>
         <div className="helloTxt">{StringService.uppercaseWords(this.state.content)}</div>
         <div className="form">
-          <input ref={(r: HTMLInputElement) => this.input = r} type="text" name="test"/>
-          <button className="btn btn-primary" onClick={this.onChange}><Icon name="pencil"/>UPDATE</button>
+          <input ref={(r: HTMLInputElement) => this.input = r} type="text" name="test" />
+          <button className="btn btn-primary" onClick={this.onChange}><Icon name="pencil" />UPDATE</button>
         </div>
       </div>
     );

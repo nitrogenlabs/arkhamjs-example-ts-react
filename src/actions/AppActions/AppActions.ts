@@ -8,12 +8,12 @@ export class AppActions {
     history.push(`/${route}`);
     return history;
   }
-  
-  static updateContent(content: string): FluxAction {
+
+  static updateContent(content: string): Promise<FluxAction> {
     return Flux.dispatch({type: AppConstants.UPDATE_CONTENT, content});
   }
-  
-  static updateView(path: string): FluxAction {
+
+  static updateView(path: string): Promise<FluxAction> {
     return Flux.dispatch({type: AppConstants.UPDATE_VIEW, path});
   }
 }

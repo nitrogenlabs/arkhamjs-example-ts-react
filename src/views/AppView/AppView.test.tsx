@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {AppView} from 'views';
+import {AppView} from './AppView';
 
 describe('AppView', () => {
   let rendered;
 
   beforeAll(() => {
     // Render
-    rendered = renderer.create(<AppView/>);
+    rendered = renderer.create(<AppView />);
   });
 
   it('should render', () => {

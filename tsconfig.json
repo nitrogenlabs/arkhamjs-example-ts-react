@@ -17,15 +17,6 @@
     "noStrictGenericChecks": true,
     "noUnusedLocals": true,
     "outDir": "dist",
-    "paths": {
-      "actions": ["actions"],
-      "components": ["components"],
-      "constants": ["constants"],
-      "errors": ["errors"],
-      "services": ["services"],
-      "stores": ["stores"],
-      "views": ["views"]
-    },
     "pretty": false,
     "removeComments": true,
     "sourceMap": true,

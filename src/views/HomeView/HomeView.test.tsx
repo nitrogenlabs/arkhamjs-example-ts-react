@@ -1,8 +1,8 @@
-import {AppActions} from 'actions';
-import {AppConstants} from 'constants/AppConstants';
+import {AppActions} from '../../actions';
+import {AppConstants} from '../../constants/AppConstants';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import {HomeView} from 'views';
+import {HomeView} from './HomeView';
 import SpyInstance = jest.SpyInstance;
 
 describe('HomeView', () => {
@@ -10,7 +10,7 @@ describe('HomeView', () => {
 
   beforeAll(() => {
     // Render
-    rendered = renderer.create(<HomeView/>);
+    rendered = renderer.create(<HomeView />);
     instance = rendered.root.instance;
   });
 
