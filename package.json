@@ -36,7 +36,7 @@
     "@nlabs/arkhamjs-middleware-logger": "^1.0.2",
     "@nlabs/arkhamjs-storage-browser": "^1.0.4",
     "@nlabs/arkhamjs-views-react": "^1.1.0",
-    "arkhamjs": "3.1.2",
+    "arkhamjs": "3.1.3",
     "body-parser": "^1.18.2",
     "connect-history-api-fallback": "^1.5.0",
     "express": "^4.16.2",
