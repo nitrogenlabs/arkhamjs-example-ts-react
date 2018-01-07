@@ -1,5 +1,5 @@
 import {Flux} from 'arkhamjs';
-import {ArkhamRouteActions, ViewBase, ViewProps} from 'arkhamjs-views-react';
+import {ArkhamRouteActions, ViewBase, ViewProps} from '@nlabs/arkhamjs-views-react';
 import * as React from 'react';
 import {AppActions} from '../../actions';
 import {Icon} from '../../components';

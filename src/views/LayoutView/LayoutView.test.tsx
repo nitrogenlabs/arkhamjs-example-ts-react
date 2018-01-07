@@ -1,4 +1,4 @@
-import {Arkham} from 'arkhamjs-views-react';
+import {Arkham} from '@nlabs/arkhamjs-views-react';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import {LayoutView} from '../../views';

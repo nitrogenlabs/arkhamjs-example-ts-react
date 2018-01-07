@@ -3,14 +3,17 @@ ArkhamJS Skeleton App
 
 A simple skeleton to start you off on your ReactJS project. Uses the following modules:
  - [arkhamjs](https://github.com/nitrogenlabs/arkhamjs) - A clean, simple Flux framework.
+ - [@nlabs/arkhamjs-storage-browser](https://github.com/nitrogenlabs/arkhamjs-storage-browser) - ArkhamJS browser storage. Caches state in session or local storage.
+ - [@nlabs/arkhamjs-views-react](https://github.com/nitrogenlabs/arkhamjs-views-react) - ArkhamJS view containers.
+ - [@nlabs/arkhamjs-middleware-logger](https://github.com/nitrogenlabs/arkhamjs-middleware-logger) - ArkhamJS console log middleware.
  - [react](https://www.npmjs.com/package/react) - A declarative, efficient, and flexible JavaScript library for building user interfaces.
  - [typescript](https://www.npmjs.com/package/typescript) - TypeScript is a language for application scale JavaScript development.
  - [webpack](https://www.npmjs.com/package/webpack) - Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset.
  - [express](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
 
-[![Travis](https://img.shields.io/travis/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://travis-ci.org/nitrogenlabs/arkhamjs-skeleton)
+[![Travis](https://img.shields.io/travis/nitrogenlabs/arkhamjs-skeleton-react.svg?style=flat-square)](https://travis-ci.org/nitrogenlabs/arkhamjs-skeleton-react)
 [![TypeScript](https://badges.frapsoft.com/typescript/version/typescript-next.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
-[![Issues](http://img.shields.io/github/issues/nitrogenlabs/arkhamjs-skeleton.svg?style=flat-square)](https://github.com/nitrogenlabs/arkhamjs-skeleton/issues)
+[![Issues](http://img.shields.io/github/issues/nitrogenlabs/arkhamjs-skeleton-react.svg?style=flat-square)](https://github.com/nitrogenlabs/arkhamjs-skeleton-react/issues)
 [![Gitter](https://img.shields.io/gitter/room/NitrgenLabs/arkhamjs.svg?style=flat-square)](https://gitter.im/NitrogenLabs/arkhamjs)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
@@ -97,7 +100,6 @@ You can redefine which packages to treat as vendor dependencies by editing the v
 ```js
 [
   'arkhamjs',
-  'bluebird',
   'react',
   'react-dom',
   'react-router',

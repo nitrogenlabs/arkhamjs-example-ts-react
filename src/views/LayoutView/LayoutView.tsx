@@ -1,4 +1,4 @@
-import {ViewBase, ViewContainer, ViewProps} from 'arkhamjs-views-react';
+import {ViewBase, ViewContainer, ViewProps} from '@nlabs/arkhamjs-views-react';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {RouteProps} from 'react-router';
