@@ -1,5 +1,5 @@
-import {Flux} from 'arkhamjs';
 import {ArkhamRouteActions, ViewBase, ViewProps} from '@nlabs/arkhamjs-views-react';
+import {Flux} from 'arkhamjs';
 import * as React from 'react';
 import {AppActions} from '../../actions';
 import {Icon} from '../../components';
@@ -24,6 +24,8 @@ export class HomeView extends ViewBase<ViewProps, HomeState> {
     this.state = {
       content: Flux.getStore('app.content', '')
     };
+
+    console.log('content', Flux.getStore('app.content', ''));
   }
 
   componentWillMount(): void {
@@ -50,9 +52,10 @@ export class HomeView extends ViewBase<ViewProps, HomeState> {
   }
 
   render(): JSX.Element {
+    console.log('render::content', Flux.getStore('app.content', ''));
     return (
       <div className="view view-home">
-        <div className="logo"><img className="logo_img" src="/img/logo-main.png" /></div>
+        <div className="logo"><img className="logo_img" src="/img/arkhamjs-logo.png" /></div>
         <div className="helloTxt">{StringService.uppercaseWords(this.state.content)}</div>
         <div className="form">
           <input ref={(r: HTMLInputElement) => this.input = r} type="text" name="test" />
