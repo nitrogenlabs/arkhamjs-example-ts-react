@@ -6,7 +6,4 @@ global.requestAnimationFrame = function(callback) {
 // Configuration
 const Flux = require('arkhamjs').Flux;
 
-Flux.config({
-  name: 'arkhamDemo',
-  useCache: true
-});
+Flux.init({name: 'arkhamDemo'});
