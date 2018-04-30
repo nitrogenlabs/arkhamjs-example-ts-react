@@ -1,18 +1,28 @@
 import {Logger, LoggerDebugLevel} from '@nlabs/arkhamjs-middleware-logger';
 import {BrowserStorage} from '@nlabs/arkhamjs-storage-browser';
-import {Arkham} from '@nlabs/arkhamjs-views-react';
-import {FluxOptions} from 'arkhamjs';
+import {Flux} from 'arkhamjs';
 import * as React from 'react';
-import {Route} from 'react-router-dom';
-import {AppStore} from 'stores';
-import {LayoutView} from 'views';
+import {AppStore} from '../../stores';
 import {Config} from '../../config';
+import {AppActions} from '../../actions';
+import {Icon} from '../../components';
+import {AppConstants} from '../../constants/AppConstants';
+import {StringService} from '../../services';
+import './appView.css';
 
-export class AppView extends React.Component<{}, {}> {
-  private arkhamConfig: FluxOptions;
+export interface AppViewState {
+  content: string;
+}
+
+export class AppView extends React.Component<{}, AppViewState> {
+  input: HTMLInputElement;
 
   constructor(props) {
     super(props);
+
+    // Methods
+    this.onChange = this.onChange.bind(this);
+    this.onUpdateContent = this.onUpdateContent.bind(this);
 
     // ArkhamJS Middleware
     const env: string = Config.get('environment');
@@ -21,19 +31,65 @@ export class AppView extends React.Component<{}, {}> {
     });
 
     // ArkhamJS Configuration
-    const storage = new BrowserStorage({type: 'session'});
-    this.arkhamConfig = {
+    Flux.init({
       middleware: [logger],
-      storage,
+      name: 'arkhamExampleReact',
+      storage: new BrowserStorage({type: 'session'}),
       stores: [AppStore]
+    });
+
+    // Initial state
+    this.state = {
+      content: Flux.getState('app.content', '')
     };
+  }
+
+  componentWillMount(): void {
+    // Add listeners
+    // When app initializes and gets any data from persistent storage
+    Flux.onInit(this.onUpdateContent);
+
+    // Listen for content updates
+    Flux.on(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
+  }
+
+  componentWillUnmount(): void {
+    // Add listeners
+    Flux.offInit(this.onUpdateContent);
+    Flux.off(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
+  }
+
+  onChange(): void {
+    const {value} = this.input;
+    AppActions.updateContent(value);
+  }
+
+  onUpdateContent(): void {
+    const content = Flux.getState('app.content', '');
+    this.setState({content});
   }
 
   render(): JSX.Element {
     return (
-      <Arkham config={this.arkhamConfig}>
-        <Route path="/" component={LayoutView} />
-      </Arkham>
+      <div className="container view-home">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="logo">
+              <a href="https://arkhamjs.io">
+                <img className="logoImg" src="/img/arkhamjs-logo.png" />
+              </a>
+            </div>
+            <div className="helloTxt">{StringService.uppercaseWords(this.state.content)}</div>
+            <div className="form">
+              <input ref={(r: HTMLInputElement) => this.input = r} type="text" name="test" />
+              <button className="btn btn-primary" onClick={this.onChange}>
+                <Icon name="pencil" className="btnIcon" />
+                UPDATE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

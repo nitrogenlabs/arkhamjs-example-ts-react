@@ -1,0 +1,10 @@
+.travis.yml
+.vscode
+*.test.ts
+*.test.tsx
+coverage
+dist
+docs
+node_modules
+package-lock.json
+yarn.lock

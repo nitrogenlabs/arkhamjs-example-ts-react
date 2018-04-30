@@ -1,6 +1,7 @@
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {Component, ComponentProps} from '../Component/Component';
+import './icon.css';
 
 export interface IconProps extends ComponentProps {
   readonly name: string;
@@ -37,6 +38,6 @@ export class Icon extends Component<IconProps> {
 
   render(): JSX.Element {
     const useTag: string = `<use xlink:href="/icons/icons.svg#${this.props.name}" />`;
-    return <svg className={this.getStyles()} dangerouslySetInnerHTML={{__html: useTag}}/>;
+    return <svg className={this.getStyles()} dangerouslySetInnerHTML={{__html: useTag}} />;
   }
 }

@@ -1,2 +1,13 @@
 {
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+  "emmet.syntaxProfiles": {
+    "postcss": "css"
+  },
+  "css.validate": false,
+  "cSpell.words": [
+    "arkhamjs",
+    "nlabs"
+  ]
 }

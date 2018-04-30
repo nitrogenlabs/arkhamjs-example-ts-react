@@ -29,21 +29,4 @@ describe('AppActions', () => {
       expect(action.content).toBe(content);
     });
   });
-
-  describe('#updateView', () => {
-    let action;
-
-    beforeAll(async () => {
-      // Method
-      action = await AppActions.updateView(path);
-    });
-
-    it('should dispatch AppConstants.UPDATE_VIEW', () => {
-      return expect(action.type).toBe(AppConstants.UPDATE_VIEW);
-    });
-
-    it('should contain content in action', () => {
-      expect(action.path).toBe(path);
-    });
-  });
 });

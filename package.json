@@ -1,144 +1,54 @@
 {
-  "name": "@nlabs/arkhamjs-skeleton-react",
-  "version": "3.0.0",
-  "description": "ArkhamJS React Skeleton",
+  "name": "@nlabs/arkhamjs-example-react",
+  "version": "1.0.0",
+  "description": "ArkhamJS React Example App",
   "license": "MIT",
-  "main": "index.js",
-  "types": "./dist/index.d.ts",
   "keywords": [
     "arkhamjs",
+    "example",
     "nitrogenlabs",
     "react",
     "skeleton",
-    "react-router",
-    "express"
+    "lex"
   ],
   "authors": [
     "Giraldo Rosales <giraldo@nitrogenlabs.com> (http://nitrogenlabs.com/)"
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/nitrogenlabs/arkhamjs-skeleton-react"
+    "url": "nitrogenlabs/arkhamjs-example-react"
   },
-  "homepage": "https://github.com/nitrogenlabs/arkhamjs-skeleton-react",
+  "homepage": "https://github.com/nitrogenlabs/arkhamjs-example-react",
   "bugs": {
-    "url": "https://github.com/nitrogenlabs/arkhamjs-skeleton-react/issues"
+    "url": "https://github.com/nitrogenlabs/arkhamjs-example-react/issues"
   },
   "scripts": {
-    "development": "NODE_ENV=development gulp",
-    "docs": "gulp docs",
-    "compile": "NODE_ENV=preprod npm test && gulp compile",
-    "production": "NODE_ENV=production npm test && gulp production",
-    "start": "npm run development",
-    "test": "NODE_ENV=test gulp test && jest"
+    "compile": "lex compile",
+    "development": "lex dev",
+    "prepublishOnly": "yarn test",
+    "production": "yarn test && yarn compile",
+    "reset": "rm -rf node_modules yarn.lock && yarn",
+    "start": "yarn development",
+    "test": "lex test",
+    "update": "yarn upgrade-interactive --latest"
   },
   "dependencies": {
+    "@nlabs/arkhamjs-middleware-devtools": "^0.1.1",
     "@nlabs/arkhamjs-middleware-logger": "^1.0.2",
     "@nlabs/arkhamjs-storage-browser": "^1.0.5",
-    "@nlabs/arkhamjs-views-react": "^1.2.2",
-    "arkhamjs": "3.2.4",
-    "body-parser": "^1.18.2",
-    "connect-history-api-fallback": "^1.5.0",
-    "express": "^4.16.2",
-    "express-useragent": "^1.0.12",
-    "lodash": "^4.17.5",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "arkhamjs": "3.3.3",
+    "bootstrap": "^4.1.0",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2"
   },
   "devDependencies": {
     "@types/history": "^4.6.2",
-    "@types/jest": "^22.1.3",
-    "@types/node": "^9.4.6",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^9.6.6",
     "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.0.38",
-    "@types/react-dom": "^16.0.4",
-    "@types/react-router-dom": "^4.2.4",
-    "autoprefixer": "^8.0.0",
-    "awesome-typescript-loader": "^3.4.1",
-    "del": "^3.0.0",
-    "exports-loader": "^0.7.0",
-    "fs": "0.0.2",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-exec": "^3.0.1",
-    "gulp-flatten": "^0.4.0",
-    "gulp-image": "^4.3.0",
-    "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.6.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-svgmin": "^1.2.4",
-    "gulp-svgstore": "^6.1.1",
-    "gulp-tslint": "^8.1.3",
-    "gulp-unzip": "^1.0.0",
-    "gulp-util": "^3.0.8",
-    "gulp-zip": "^4.1.0",
-    "html-webpack-plugin": "^2.30.1",
-    "imports-loader": "^0.8.0",
-    "isparta": "^4.0.0",
-    "isparta-loader": "^2.0.0",
-    "istanbul-instrumenter-loader": "^3.0.0",
-    "jest": "^22.4.1",
-    "json-d-ts": "^1.0.1",
-    "node-sass": "^4.7.2",
-    "nodemon": "^1.15.1",
-    "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.2.0",
-    "react-transform-catch-errors": "^1.0.2",
-    "react-transform-hmr": "^1.0.4",
-    "redbox-react": "^1.5.0",
-    "regenerator-runtime": "^0.11.1",
-    "require-dir": "^1.0.0",
-    "run-sequence": "^2.2.1",
-    "source-map-loader": "^0.2.3",
-    "source-map-support": "^0.5.3",
-    "ts-jest": "^22.0.4",
-    "ts-node": "^5.0.0",
-    "tslint": "^5.9.1",
-    "tslint-eslint-rules": "^5.0.0",
-    "tslint-react": "^3.5.1",
-    "typedoc": "^0.10.0",
-    "typescript": "^2.7.2",
-    "vinyl-paths": "^2.1.0",
-    "webpack": "^3.11.0",
-    "webpack-dev-middleware": "^2.0.6",
-    "webpack-hot-middleware": "^2.21.0",
-    "yargs": "^11.0.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageReporters": [
-      "html",
-      "text"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "setupFiles": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "testRegex": "src/.*\\.test\\.(ts|tsx|js)$",
-    "testURL": "http://localhost",
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "verbose": false
+    "@types/react": "^16.3.12",
+    "@types/react-dom": "^16.0.5",
+    "react-test-renderer": "^16.3.2"
   }
 }

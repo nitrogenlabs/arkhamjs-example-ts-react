@@ -1,10 +1,9 @@
-$icon-size-base: 16px !default;
-$icon-size-sm: 16px !default;
-$icon-size-md: 32px !default;
-$icon-size-lg: 64px !default;
-$icon-size-xl: 128px !default;
-$icon-size-xx: 256px !default;
-
+$icon-size-base: 16px;
+$icon-size-sm: 16px;
+$icon-size-md: 32px;
+$icon-size-lg: 64px;
+$icon-size-xl: 128px;
+$icon-size-xx: 256px;
 .icon {
   display: block;
   vertical-align: middle;

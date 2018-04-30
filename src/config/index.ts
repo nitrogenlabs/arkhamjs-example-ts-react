@@ -17,26 +17,23 @@ export interface EnvConfig {
 export class Config {
   static values: EnvConfig = {
     default: {
+      appId: 'arkhamjs-skeleton',
       env: process.env.NODE_ENV
     },
     development: {
-      appId: 'arkhamjs-skeleton',
-      appName: 'Arkham Skeleton'
+      appName: 'Arkham Skeleton Development'
     },
     preprod: {
-      appId: 'arkhamjs-skeleton',
-      appName: 'Arkham Skeleton'
+      appName: 'Arkham Skeleton Pre-Production'
     },
     production: {
-      appId: 'arkhamjs-skeleton',
-      appName: 'Arkham Skeleton'
+      appName: 'Arkham Skeleton Production'
     },
     test: {
-      appId: 'arkhamjs-skeleton',
-      appName: 'Arkham Skeleton'
+      appName: 'Arkham Skeleton Test'
     }
   };
-  
+
   static get(path: string | string[]): any {
     const environment: string = process.env.NODE_ENV || 'development';
     const configValues: object = merge(this.values.default, this.values[environment], {environment});

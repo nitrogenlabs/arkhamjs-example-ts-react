@@ -4,7 +4,7 @@
     justify-content: center;
     margin-bottom: 100px;
 
-    .logo_img {
+    .logoImg {
       width: 403px;
       height: 94px;
     }
@@ -28,7 +28,16 @@
     }
 
     button {
+      display: flex;
       align-self: flex-end;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+
+      .btnIcon {
+        align-self: center;
+        margin-right: 5px;
+      }
     }
   }
 }
