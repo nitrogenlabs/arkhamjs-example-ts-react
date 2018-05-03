@@ -26,9 +26,9 @@
   version "6.0.107"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.107.tgz#917613ed129a5fd6601dc4b644c4c324aaad4f4c"
 
-"@types/node@^9.6.6":
-  version "9.6.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.7.tgz#5f3816d1db2155edcde1b2e3aa5d0e5c520cb564"
+"@types/node@^10.0.3":
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.3.tgz#1f89840c7aac2406cc43a2ecad98fc02a8e130e4"
 
 "@types/prop-types@^15.5.2":
   version "15.5.2"
@@ -47,10 +47,11 @@
   dependencies:
     csstype "^2.2.0"
 
-arkhamjs@3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/arkhamjs/-/arkhamjs-3.3.3.tgz#139dcf129ac3aa1a4b1cbe5fc4a430fe21483c46"
+arkhamjs@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/arkhamjs/-/arkhamjs-3.4.0.tgz#c94df7175c71ad1980b09b4f3ba037846d993ec0"
   dependencies:
+    error-stack-parser "^2.0.1"
     lodash "^4.17.5"
 
 asap@~2.0.3:
@@ -74,6 +75,12 @@ encoding@^0.1.11:
   resolved "https://registry.yarnpkg.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
   dependencies:
     iconv-lite "~0.4.13"
+
+error-stack-parser@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-2.0.1.tgz#a3202b8fb03114aa9b40a0e3669e48b2b65a010a"
+  dependencies:
+    stackframe "^1.0.3"
 
 fbjs@^0.8.16:
   version "0.8.16"
@@ -172,6 +179,10 @@ safer-buffer@^2.1.0:
 setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
+
+stackframe@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.0.4.tgz#357b24a992f9427cba6b545d96a14ed2cbca187b"
 
 ua-parser-js@^0.7.9:
   version "0.7.17"

@@ -25,10 +25,10 @@
     "url": "https://github.com/nitrogenlabs/arkhamjs-example-react/issues"
   },
   "scripts": {
-    "compile": "lex compile",
+    "build": "lex build",
     "development": "lex dev",
     "prepublishOnly": "yarn test",
-    "production": "yarn test && yarn compile",
+    "production": "yarn test && yarn build",
     "reset": "rm -rf node_modules yarn.lock && yarn",
     "start": "yarn development",
     "test": "lex test",
@@ -38,7 +38,7 @@
     "@nlabs/arkhamjs-middleware-devtools": "^0.1.1",
     "@nlabs/arkhamjs-middleware-logger": "^1.0.2",
     "@nlabs/arkhamjs-storage-browser": "^1.0.5",
-    "arkhamjs": "3.3.3",
+    "arkhamjs": "3.4.0",
     "bootstrap": "^4.1.0",
     "lodash": "^4.17.10",
     "prop-types": "^15.6.1",
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@types/history": "^4.6.2",
     "@types/jest": "^22.2.3",
-    "@types/node": "^9.6.6",
+    "@types/node": "^10.0.3",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.3.12",
     "@types/react-dom": "^16.0.5",

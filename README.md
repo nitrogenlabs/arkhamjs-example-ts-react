@@ -27,14 +27,11 @@ $ yarn                            # Install Node modules listed in ./package.jso
 Usage
 -----
 
-#### `yarn start` also `yarn run development`
+#### `yarn start` also `yarn development`
 Runs the webpack build system to compile scripts on the fly. Run local web server. The default webpack dev server can be found at `localhost:5000`. The port can be changed in the config.
 
-#### `yarn compile`
-Compile your application for a production environment.
-
-#### `yarn docs`
-Compile documentation for the application.
+#### `yarn build`
+Compile your application and copy static files for a production environment.
 
 #### `yarn lint`
 Lint your app with tslint.
