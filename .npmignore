@@ -1,7 +1,5 @@
 .travis.yml
 .vscode
-*.test.ts
-*.test.tsx
 coverage
 dist
 docs
