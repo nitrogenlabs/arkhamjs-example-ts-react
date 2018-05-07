@@ -21,8 +21,8 @@ export class AppView extends React.Component<{}, AppViewState> {
     super(props);
 
     // Methods
-    this.onChange = this.onChange.bind(this);
     this.onUpdateContent = this.onUpdateContent.bind(this);
+    this.updateContent = this.updateContent.bind(this);
 
     // ArkhamJS Middleware
     const env: string = Config.get('environment');
@@ -54,18 +54,18 @@ export class AppView extends React.Component<{}, AppViewState> {
   }
 
   componentWillUnmount(): void {
-    // Add listeners
+    // Remove listeners
     Flux.offInit(this.onUpdateContent);
     Flux.off(AppConstants.UPDATE_CONTENT, this.onUpdateContent);
   }
 
-  onChange(): void {
+  updateContent(): void {
     const {value} = this.input;
     AppActions.updateContent(value);
   }
 
   onUpdateContent(): void {
-    const content = Flux.getState('app.content', '');
+    const content: string = Flux.getState('app.content', '');
     this.setState({content});
   }
 
@@ -82,7 +82,7 @@ export class AppView extends React.Component<{}, AppViewState> {
             <div className="helloTxt">{StringService.uppercaseWords(this.state.content)}</div>
             <div className="form">
               <input ref={(r: HTMLInputElement) => this.input = r} type="text" name="test" />
-              <button className="btn btn-primary" onClick={this.onChange}>
+              <button className="btn btn-primary" onClick={this.updateContent}>
                 <Icon name="pencil" className="btnIcon" />
                 UPDATE
               </button>
