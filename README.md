@@ -1,5 +1,4 @@
-ArkhamJS React Example
-=====================
+# ArkhamJS React TypeScript Example
 
 A simple base application to start you off on your ReactJS project. Uses the following modules:
  - [arkhamjs](https://www.npmjs.com/package/arkhamjs) - A clean, simple Flux framework.
@@ -14,47 +13,58 @@ A simple base application to start you off on your ReactJS project. Uses the fol
 [![Gitter](https://img.shields.io/gitter/room/NitrgenLabs/arkhamjs.svg?style=flat-square)](https://gitter.im/NitrogenLabs/arkhamjs)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 
-Getting Started
+## Getting Started
+
 ---------------
 
 - Clone the repo and install the necessary node modules:
 
-```shell
+```bash
 $ npm install -g yarn @nlabs/lex  # Install Yarn and Lex
 $ yarn                            # Install Node modules listed in ./package.json (may take a while the first time)
 ```
 
-Usage
------
+## Usage
 
-#### `yarn start` also `yarn development`
+---------------
+
+### `yarn start` also `yarn development`
+
 Runs the webpack build system to compile scripts on the fly. Run local web server. The default webpack dev server can be found at `localhost:5000`. The port can be changed in the config.
 
-#### `yarn build`
+### `yarn build`
+
 Compile your application and copy static files for a production environment.
 
-#### `yarn lint`
+### `yarn lint`
+
 Lint your app with tslint.
 
-#### `yarn test`
+### `yarn test`
+
 Runs all unit tests within your app with Jest.
 
-#### `yarn production`
+### `yarn production`
+
 Run tests and then, on success, compile your application for a production environment. 
 
-#### `yarn dev`
+### `yarn dev`
+
 Compile your application for a development environment. Run local development web server. The default web server url is: `localhost:8080`.
 
-### Configuration
+## Configuration
+
+---------------
 
 See [@nlabs/lex](https://www.npmjs.com/package/@nlabs/lex) for documentation on custom configuration.
 
-Structure
----------
+## Structure
+
+---------------
 
 The folder structure provided is only meant to serve as a guide, it is by no means prescriptive. It is something that has worked very well for me and my team, but use only what makes sense to you.
 
-```
+```bash
 .
 ├── coverage                 # Unit test coverage reports
 ├── dist                     # Compiled files
@@ -81,8 +91,9 @@ The folder structure provided is only meant to serve as a guide, it is by no mea
 
 This distinction may not be important for you, but as an explanation: A **Layout** is something that describes an entire page structure, such as a fixed navigation, viewport, sidebar, and footer. Most applications will probably only have one layout, but keeping these components separate makes their intent clear. **Views** are components that live at routes, and are generally rendered within a **Layout**. What this ends up meaning is that, with this structure, nearly everything inside of **Components** ends up being a dumb component.
 
-Styles
-------
+## Styles
+
+---------------
 
 All `.css` imports will be run through postcss and cssnext, extracted and compiled during builds. CSS features included are nested classes and SASS-like variables. Styles must be imported either directly within the js file or via another stylesheet which has already been imported.
 
@@ -91,12 +102,14 @@ All `.css` imports will be run through postcss and cssnext, extracted and compil
 import `./component.css`;
 ```
 
-Testing
--------
+## Testing
 
-To add a unit test, simply create a `*.test.js` file within the `/src` directory. Jest will look for these for and test these files.
+---------------
 
-Troubleshooting
+To add a unit test, simply create a `*.test.ts` or `*.test.tsx` file within the `/src` directory. Jest will look for these for and test these files.
+
+## Troubleshooting
+
 ---------------
 
 Nothing yet. Having an issue? Report it and We'll get to it as soon as possible!

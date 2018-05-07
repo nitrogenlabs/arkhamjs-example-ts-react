@@ -1,13 +1,14 @@
 {
-  "name": "@nlabs/arkhamjs-example-react",
-  "version": "1.0.2",
-  "description": "ArkhamJS React Example App",
+  "name": "@nlabs/arkhamjs-example-ts-react",
+  "version": "1.0.3",
+  "description": "ArkhamJS React Typescript Example App",
   "license": "MIT",
   "keywords": [
     "arkhamjs",
     "example",
     "nitrogenlabs",
     "react",
+    "typescript",
     "skeleton",
     "lex"
   ],
@@ -18,11 +19,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "nitrogenlabs/arkhamjs-example-react"
+    "url": "nitrogenlabs/arkhamjs-example-ts-react"
   },
-  "homepage": "https://github.com/nitrogenlabs/arkhamjs-example-react",
+  "homepage": "https://github.com/nitrogenlabs/arkhamjs-example-ts-react",
   "bugs": {
-    "url": "https://github.com/nitrogenlabs/arkhamjs-example-react/issues"
+    "url": "https://github.com/nitrogenlabs/arkhamjs-example-ts-react/issues"
   },
   "scripts": {
     "build": "lex build",
