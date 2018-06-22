@@ -1,8 +1,6 @@
 export class StringService {
   static uppercaseWords(str: string = ''): string {
-    return (str || '').replace(/\w\S*/g, (txt: string) => {
-      return StringService.capitalize(txt);
-    });
+    return (str || '').replace(/\w\S*/g, (txt: string) => StringService.capitalize(txt));
   }
 
   static capitalize(str: string = ''): string {

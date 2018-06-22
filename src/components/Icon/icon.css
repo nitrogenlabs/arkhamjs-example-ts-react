@@ -13,12 +13,12 @@ $icon-size-xx: 256px;
   color: inherit;
   fill: currentColor;
 
-  svg {
+  & svg {
     width: 100%;
     height: 100%;
     fill: inherit;
 
-    symbol path {
+    & symbol path {
       all: inherit;
     }
   }

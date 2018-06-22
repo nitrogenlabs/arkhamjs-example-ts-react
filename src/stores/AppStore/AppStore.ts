@@ -1,6 +1,7 @@
 import {Store} from 'arkhamjs';
+import set from 'lodash/set';
+
 import {AppConstants} from '../../constants/AppConstants';
-import {set} from 'lodash';
 
 export class AppStore extends Store {
   constructor() {

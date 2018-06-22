@@ -28,31 +28,33 @@
   "scripts": {
     "build": "lex build",
     "development": "lex dev",
+    "lint": "eslint ./src --ext .ts,.tsx",
     "prepublishOnly": "yarn test",
     "production": "yarn test && yarn build",
-    "reset": "rm -rf node_modules yarn.lock && yarn",
-    "start": "yarn development",
+    "reset": "lex clean && yarn",
+    "start": "lex dev -o",
     "test": "lex test",
-    "update": "yarn upgrade-interactive --latest"
+    "update": "lex update -i"
   },
   "dependencies": {
     "@nlabs/arkhamjs-middleware-devtools": "^0.1.1",
-    "@nlabs/arkhamjs-middleware-logger": "^1.0.2",
-    "@nlabs/arkhamjs-storage-browser": "^1.0.5",
-    "arkhamjs": "3.4.0",
+    "@nlabs/arkhamjs-middleware-logger": "^1.0.3",
+    "@nlabs/arkhamjs-storage-browser": "^1.0.7",
+    "arkhamjs": "3.5.6",
     "bootstrap": "^4.1.0",
     "lodash": "^4.17.10",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "@types/history": "^4.6.2",
-    "@types/jest": "^22.2.3",
-    "@types/node": "^10.0.3",
-    "@types/prop-types": "^15.5.2",
-    "@types/react": "^16.3.12",
-    "@types/react-dom": "^16.0.5",
-    "react-test-renderer": "^16.3.2"
+    "@types/jest": "^23.1.1",
+    "@types/node": "^10.3.4",
+    "@types/react": "^16.4.1",
+    "@types/react-dom": "^16.0.6",
+    "eslint": "^4.19.1",
+    "eslint-config-styleguidejs": "^0.7.5",
+    "react-test-renderer": "^16.4.1",
+    "typescript": "^2.9.2"
   }
 }

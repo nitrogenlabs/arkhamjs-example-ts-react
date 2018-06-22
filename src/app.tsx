@@ -1,7 +1,9 @@
+import './app.css';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {AppView} from './views';
-import './app.css';
+
+import {AppView} from './views/AppView/AppView';
 
 const target = document.getElementById('app');
 
