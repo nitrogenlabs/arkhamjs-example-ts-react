@@ -1,8 +1,8 @@
-.travis.yml
 coverage
 dist
 docs
 node_modules
+.travis.yml
 package-lock.json
 yarn-error.log
 yarn.lock
